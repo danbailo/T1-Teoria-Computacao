@@ -1,10 +1,9 @@
-from os import listdir
-from os.path import isfile, join
-from time import time
+import os
+import time
 import core
 
 def get_instances(directory):
-	return [f for f in listdir(directory) if isfile(join(directory, f))]
+	return [f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))]
 
 def get_results(directory):	
 	all_results_decrescent = []
@@ -30,16 +29,16 @@ def get_results(directory):
 			elif state == 2:
 				weight_max = int(inst[0])
 
-		start = time()
+		start = time.time()
 		result_decrescent = core.decrescent(number_items, weight_max, values_items, weight_items)
-		all_results_decrescent.append((input_file,result_decrescent, '{0:.5}'.format(time()-start)))
+		all_results_decrescent.append((input_file,result_decrescent, '{0:.5}'.format(time.time()-start)))
 		
-		start = time()
+		start = time.time()
 		result_crescent = core.crescent(number_items, weight_max, values_items, weight_items)
-		all_results_crescent.append((input_file,result_crescent, '{0:.5}'.format(time()-start)))
+		all_results_crescent.append((input_file,result_crescent, '{0:.5}'.format(time.time()-start)))
 
-		start = time()
+		start = time.time()
 		result_efficiency = core.efficiency(number_items, weight_max, values_items, weight_items)
-		all_results_efficiency.append((input_file,result_efficiency, '{0:.5}'.format(time()-start)))
+		all_results_efficiency.append((input_file,result_efficiency, '{0:.5}'.format(time.time()-start)))
 		instance.clear()
 	return all_results_decrescent, all_results_crescent, all_results_efficiency
