@@ -3,11 +3,19 @@
 \usepackage[utf8]{inputenc}
 \usepackage{indentfirst}
 \usepackage{graphicx}
+\usepackage{graphics}
+
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{adjustbox}
+
 \usepackage{booktabs}
 \usepackage[font=footnotesize,labelfont=bf]{caption} %muda o tamanho das caption e deixa em negrito
 \usepackage{cite}
 \usepackage{color}   %May be necessary if you want to color links
 \usepackage{hyperref}
+
+
 \hypersetup{
     colorlinks=true,
     citecolor=blue,
@@ -141,6 +149,26 @@ Este trabalho foi armazenado num repositório {\it GitHub} para melhor controle 
 \clearpage
 
 \section{Análise dos Resultados}
+
+
+\begin{table}[h]
+\centering
+\caption{My caption}
+\label{my-label}  
+\begin{adjustbox}{width=1\textwidth}  
+    \centering
+    \begin{tabular}{|l|l|l|}
+    \hline
+    Item & Peso em kg (Tamanho) & Valor\\ \hline
+    1 & 50 & 100\\ \hline
+    2 & 20 & 60\\ \hline
+    3 & 10 & 40\\ \hline
+    4 & 40 & 40\\ \hline
+    5 & 8 & 4 \\ \hline
+    \end{tabular}
+\end{adjustbox}
+\end{table}
+
 \clearpage
 
 \end{document}
