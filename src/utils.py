@@ -14,9 +14,9 @@ def make_test(function,number_items, weight_max, values_items, weight_items):
 
 def get_results(directory):	
 
-	decrescent = []
-	crescent = []
-	efficiency = []
+	decrescent = {}
+	crescent = {}
+	efficiency = {}
 
 	for input_file in get_instances(directory): 
 		with open(os.path.join(directory,input_file)) as file: 
@@ -37,20 +37,16 @@ def get_results(directory):
 					weight_max = int(inst[0])
 
 			answer, time = make_test(core.decrescent,number_items, weight_max, values_items, weight_items)					
-			decrescent.append((input_file,answer))
+			decrescent[input_file] = answer
 			
 			answer, time = make_test(core.crescent,number_items, weight_max, values_items, weight_items)								
-			crescent.append((input_file,answer))
+			crescent[input_file] = answer
 			
 			answer, time = make_test(core.efficiency,number_items, weight_max, values_items, weight_items)					
-			efficiency.append((input_file,answer))	
+			efficiency[input_file] = answer	
 	
 	return decrescent, crescent, efficiency
-
-def write_result(result,file_name):
-	# with open(file_name,'w') as file: file.write(json.dumps(result,indent=4))
-	# for line in result: print(line)
-	with open(file_name,'w') as file: file.write(str(line)+'\n')
+	
 #debugger
 # if __name__ == "__main__":
 # 	directory = '../inputs/'
