@@ -1,6 +1,7 @@
 import os
 import time
 import core
+from collections import defaultdict
 
 def get_instances(directory):
 	return sorted(os.listdir(directory), key=lambda k:int(k.strip('input.in')))
@@ -34,12 +35,22 @@ def get_results(directory):
 					if item_id == number_items: state = 2
 				elif state == 2:
 					weight_max = int(inst[0])
-			decrescent.append((input_file,make_test(core.decrescent,number_items, weight_max, values_items, weight_items)))
-			crescent.append((input_file,make_test(core.crescent,number_items, weight_max, values_items, weight_items)))
-			efficiency.append((input_file,make_test(core.efficiency,number_items, weight_max, values_items, weight_items)))	
+
+			answer, time = make_test(core.decrescent,number_items, weight_max, values_items, weight_items)					
+			decrescent.append((input_file,answer))
+			
+			answer, time = make_test(core.crescent,number_items, weight_max, values_items, weight_items)								
+			crescent.append((input_file,answer))
+			
+			answer, time = make_test(core.efficiency,number_items, weight_max, values_items, weight_items)					
+			efficiency.append((input_file,answer))	
 	
 	return decrescent, crescent, efficiency
 
+def write_result(result,file_name):
+	# with open(file_name,'w') as file: file.write(json.dumps(result,indent=4))
+	# for line in result: print(line)
+	with open(file_name,'w') as file: file.write(str(line)+'\n')
 #debugger
 # if __name__ == "__main__":
 # 	directory = '../inputs/'
