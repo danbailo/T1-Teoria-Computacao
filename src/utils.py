@@ -42,4 +42,23 @@ def get_results(directory):
 	return all_results_decrescent, all_results_crescent, all_results_efficiency
 
 if __name__ == "__main__":
-	print(core.decrescent)	
+	directory = '../inputs/'
+
+	test1 = []
+	test2 = []
+
+	for input_file in get_instances(directory): 
+		start = time()
+		with open(directory+input_file) as file: instance = list(map(lambda line:line.split(),file.read().splitlines()))	
+		# print(instance)
+		test1.append(time()-start)
+
+		start = time()
+		instance = []
+		with open(directory+input_file) as file: 
+			for line in file: instance.append(line.split())
+		# print(instance)			
+		test2.append(time()-start)
+
+	print('USING MAP: {}'.format(sum(test1)))
+	print('USING FOR: {}'.format(sum(test2)))
