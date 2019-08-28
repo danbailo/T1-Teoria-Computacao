@@ -6,12 +6,6 @@ from collections import defaultdict
 def get_instances(directory):
 	return sorted(os.listdir(directory), key=lambda k:int(k.strip('input.in')))
 
-def make_test(function,number_items, weight_max, values_items, weight_items):
-	start = time.time()
-	answer = function(number_items, weight_max, values_items, weight_items)
-	t = time.time()-start
-	return answer, t
-
 def get_results(directory):	
 
 	decrescent = {}
@@ -36,17 +30,12 @@ def get_results(directory):
 				elif state == 2:
 					weight_max = int(inst[0])
 
-			answer, time = make_test(core.decrescent,number_items, weight_max, values_items, weight_items)					
-			decrescent[input_file] = answer
-			
-			answer, time = make_test(core.crescent,number_items, weight_max, values_items, weight_items)								
-			crescent[input_file] = answer
-			
-			answer, time = make_test(core.efficiency,number_items, weight_max, values_items, weight_items)					
-			efficiency[input_file] = answer	
+			decrescent[input_file] = core.decrescent(number_items, weight_max, values_items, weight_items)						
+			crescent[input_file] = core.crescent(number_items, weight_max, values_items, weight_items)							
+			efficiency[input_file] = core.efficiency(number_items, weight_max, values_items, weight_items)
 	
 	return decrescent, crescent, efficiency
-	
+
 #debugger
 # if __name__ == "__main__":
 # 	directory = '../inputs/'
