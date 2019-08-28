@@ -1,7 +1,6 @@
 import os
 import time
 import core
-from collections import defaultdict
 
 def get_instances(directory):
 	return sorted(os.listdir(directory), key=lambda k:int(k.strip('input.in')))
@@ -30,8 +29,8 @@ def get_results(directory):
 				elif state == 2:
 					weight_max = int(inst[0])
 
-			decrescent[input_file] = core.decrescent(number_items, weight_max, values_items, weight_items)						
-			crescent[input_file] = core.crescent(number_items, weight_max, values_items, weight_items)							
+			decrescent[input_file] = core.decrescent(weight_max, values_items, weight_items)						
+			crescent[input_file] = core.crescent(weight_max, values_items, weight_items)							
 			efficiency[input_file] = core.efficiency(number_items, weight_max, values_items, weight_items)
 	
 	return decrescent, crescent, efficiency
