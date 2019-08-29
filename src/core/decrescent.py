@@ -1,10 +1,13 @@
-def decrescent(weight_max, values_items, weight_items):
+def decrescent(number_items, weight_max, values_items, weight_items):
 	"""Knapsack guloso, ordena de forma decrescente os valores e os pesos dos items"""
-	items = dict(zip(values_items, weight_items))
-	items = sorted(items.items(), reverse=True)	
+	items = {}
+	for it in range(number_items): items[it] = values_items[it],weight_items[it]	
+	del values_items, weight_items
+	
+	items = sorted(items.values(), reverse=True)
 	result_final = []
 	weight = []
-
+	
 	for values_items,weight_items in items:
 		if weight_items+sum(weight) < weight_max and weight_items < weight_max: 
 			result_final.append(values_items)
