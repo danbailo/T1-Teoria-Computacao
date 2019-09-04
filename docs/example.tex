@@ -1,0 +1,133 @@
+\documentclass[a4paper, 12pt]{article}
+% \usepackage[brazil]{babel}
+% \usepackage[utf8]{inputenc}
+
+\usepackage{sbc-template}
+
+\usepackage{graphicx,url}
+
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\usepackage{inconsolata}
+\lstset{
+    language=C, %% Troque para PHP, C, Java, etc... bash é o padrão
+    basicstyle=\ttfamily\small,
+    numberstyle=\footnotesize,
+    numbers=left,
+    backgroundcolor=\color{gray!10},
+    frame=single,
+    tabsize=2,
+    rulecolor=\color{black!30},
+    title=\lstname,
+    escapeinside={\%*}{*)},
+    breaklines=true,
+    breakatwhitespace=true,
+    framextopmargin=2pt,
+    framexbottommargin=2pt,
+    inputencoding=utf8,
+    extendedchars=true,
+    literate={á}{{\'a}}1 {ã}{{\~a}}1 {é}{{\'e}}1,
+}
+
+
+\sloppy
+
+\title{Multiplicação de um vetor por $\pi$ sequencialmente e paralelamente}
+
+\author{Diego Luiz N. Gonçalves\inst{1}, Rafael H. Bordini\inst{2}, Flávio Rech
+  Wagner\inst{1}, Jomi F. Hübner\inst{3} }
+
+
+\address{Universidade Federal de Mato Grosso do Sul- Campus de Ponta Porã
+  (UFMS-CPPP)\\
+  Caixa Postal 15.064 -- 91.501-970 -- Porto Alegre -- RS -- Brazil
+\email{\ diegoreke@hotmail.com, jomi@inf.furb.br,funalo@gmail.com}
+}
+
+\begin{document} 
+
+\maketitle
+ 
+\begin{resumo} 
+  O trabalho realizado tem como objetivo analisar a diferença do tempo de execução entre um código sequêncial e um código paralelo, utilizando a API de desenvolvimento CUDA, e a linguagem de programação C, na resolução do problema onde deve-se multiplicar todos os elementos de um vetor de tamanho $2^n$, onde $n$ começa em $10$ e termina em $19$; pelo número $\pi$ com precisão de $4$ casas decimais.
+\end{resumo}
+
+\section{Codigo Sequencial}
+\begin{lstlisting}
+/*PROGRAMA SEQUÊNCIAL*/
+
+#include <stdio.h>
+#include <time.h> //biblioteca para calcular o tempo
+#include <stdlib.h>
+
+#define max 32768 //tamanho do vetor 
+#define pi 3.1415 // numero pi com 4 casas decimais
+
+int main(){
+    /*Variável que contabilizará o tempo gasto*/
+    double time=0.0; 
+    /*Vetor onde serão realizado os cálculos*/
+    double vet[max]; 
+    
+    /*Variável do tipo clock_t, que inicia a contagem do tempo*/
+    clock_t begin=clock(); 
+    
+    /*Início do processamento*/
+    for(long int i=0;i<max;i++){ 
+        vet[i]= i*pi;
+    }
+    /*Fim do processamento*/
+    
+    /*Variável do tipo clock_t, que termina a contagem do tempo*/
+    clock_t end=clock(); 
+    
+    /*Calculando o tempo em segundos*/
+    time+= (double)(end - begin) / CLOCKS_PER_SEC;
+    
+    /*Mostrando o tempo final*/
+    printf("Tempo gasto: %f segundos", time); 
+    return 0;
+}
+\end{lstlisting}
+
+\section{Código em paralelo}
+\begin{table}[!h]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+       Entrada & Tempo Sequêncial & Tempo Paralelo & Speed up \\ \hline
+                     $2^{10}$ & 0,0000066$s$ &  &  \\ \hline
+                     $2^{11}$ & 0,0000084$s$ &  &  \\ \hline
+                     $2^{12}$ & 0,0000254$s$ &  &  \\ \hline
+                     $2^{13}$ & 0,0000485$s$ &  &  \\ \hline
+                     $2^{14}$ & 0,0001018$s$ &  &  \\ \hline
+                     $2^{15}$ & 0,0002044$s$ &  &  \\ \hline
+                     $2^{16}$ & 0,0003999$s$ &  &  \\ \hline
+                     $2^{17}$ & 0,0008107$s$ &  &  \\ \hline
+                     $2^{18}$ & 0,0016843$s$ &  &  \\ \hline
+                     $2^{19}$ & 0,0033249$s$ &  &  \\ \hline
+                    
+\end{tabular}
+\caption{Tabela comparativa entre o tempo sequêncial vs. tempo paralelo e o speed up}
+\end{table}
+
+\section{References}
+
+Bibliographic references must be unambiguous and uniform.  We recommend giving
+the author names references in brackets, e.g. \cite{knuth:84},
+\cite{boulic:91}, and \cite{smith:99}.
+
+The references must be listed using 12 point font size, with 6 points of space
+before each reference. The first line of each reference should not be
+indented, while the subsequent should be indented by 0.5 cm.
+
+\bibliographystyle{sbc}
+\bibliography{sbc-template}
+
+\end{document}
+
