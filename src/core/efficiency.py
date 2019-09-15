@@ -20,7 +20,7 @@ def efficiency(number_items, weight_max, values_items, weight_items):
 	weight = []
 
 	for _,values_items, weight_items in items:
-		if  weight_items+sum(weight) < weight_max and  weight_items < weight_max: 
+		if weight_items+sum(weight) < weight_max and weight_items < weight_max: 
 			result_final.append(values_items)
 			weight.append( weight_items)		
 	return sum(result_final)	
