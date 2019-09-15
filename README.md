@@ -10,6 +10,7 @@ Porém, foram programadas três heurísiticas gulosas e uma GRASP, a fim de real
 
 * `python3`
 * `pip3`
+* `texlive`
   
 ---
 ## Dependências
