@@ -49,7 +49,7 @@ def get_result():
 	return number_items, weight_max, values_items, weight_items
 
 def semi_greedy_construction(seed, number_items, weight_max, values_items, weight_items):
-	# random.seed(seed)
+	random.seed(seed)
 	efficiency = np.divide(values_items, weight_items)
 	items = {}
 	for i in range(number_items): 
@@ -58,22 +58,32 @@ def semi_greedy_construction(seed, number_items, weight_max, values_items, weigh
 
 	# print(items)
 
-	window = 2
+	janela = 2
 	# print(items[random.randint(0,window-1)])
 	result_final = []
 	weight = 0
 
 	aux = items[:]
 
-	while len(items)>=window:
+	while len(items) > 0 and weight < weight_max:
+		if len(items) >= janela: window = janela 
+		else: window = len(items)
+		
 		index = random.randint(0,window-1)
 		weight_item = items[index][2]
-		if ((weight_item+weight) < weight_max) and (weight_item < weight_max): 
+		
+		if ((weight_item+weight) <= weight_max): 
 			result_final.append(items.pop(index))
 			weight += weight_item
-		else: break
+		else: items.pop(index)
+		# else: break
 		#tratar o caso onde o tamanho dos itens sao menores do q a janela
+
+	# print(items)
+
 	solution = [0 for i in range(number_items)]
+
+
 
 	# print(aux)
 	# print(result_final)
@@ -83,8 +93,6 @@ def semi_greedy_construction(seed, number_items, weight_max, values_items, weigh
 			# print(aux.index(i))
 			solution[aux.index(i)] = 1
 			# print(aux.index(i))
-		else: 
-			pass
 			# print(i)
 			# print('not in')
 	# print(solution)
@@ -114,6 +122,8 @@ def local_search(solution, aux, weight_max):
 
 	all_solutions = []
 
+	# print(solution)
+
 	solution_aux = solution[:]
 	for i in range(len(solution)):
 		if solution[i] == 1:
@@ -124,6 +134,7 @@ def local_search(solution, aux, weight_max):
 		all_solutions.append(solution[:])
 		solution[:] = solution_aux		
 
+	new_solution = solution_aux[:]
 	for solution in all_solutions:
 		value = 0
 		weight = 0		
@@ -131,12 +142,17 @@ def local_search(solution, aux, weight_max):
 			if solution[j] == 1:
 				value += aux[j][1]
 				weight += aux[j][2]
-		if weight < default_weight and value > default_value:
+		if weight < weight_max and value > default_value:
+			new_solution = solution[:]
 			default_value = value
 			default_weight = weight
 	# print('new value:',default_value)
 	# print('new weight:',default_weight)
-	return default_value
+
+	if new_solution == solution_aux: 
+		return default_value
+	return local_search(new_solution,aux,weight_max)
+
 
 
 def grasp(max_it, seed, number_items, weight_max, values_items, weight_items):
@@ -149,6 +165,10 @@ def grasp(max_it, seed, number_items, weight_max, values_items, weight_items):
 
 if __name__ == "__main__":
 	number_items, weight_max, values_items, weight_items = get_result()
+
+	# solution, aux = semi_greedy_construction(0, number_items, weight_max, values_items, weight_items)
+	# local_search(solution, aux, weight_max)
+
 
 	# print(exact(number_items, weight_max, values_items, weight_items))
 	# print(efficiency(number_items, weight_max, values_items, weight_items))
