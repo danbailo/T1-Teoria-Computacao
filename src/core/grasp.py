@@ -1,6 +1,8 @@
 import numpy as np
 import random
 
+random.seed(0)
+
 def exact(number_items, weight_max, values_items, weight_items):
     K = np.zeros((number_items+1, weight_max+1), dtype=np.int32)
     for i in range(number_items+1): 
@@ -72,8 +74,7 @@ def semi_greedy_construction(number_items, weight_max, values_items, weight_item
 			weight += weight_item
 		else: break
 		#tratar o caso onde o tamanho dos itens sao menores do q a janela
-
-	sol = [0 for i in range(number_items)]
+	solution = [0 for i in range(number_items)]
 
 	# print(aux)
 	# print(result_final)
@@ -81,17 +82,27 @@ def semi_greedy_construction(number_items, weight_max, values_items, weight_item
 	for i in aux:
 		if i in result_final: 
 			# print(aux.index(i))
-			sol[aux.index(i)] = 1
+			solution[aux.index(i)] = 1
 			# print(aux.index(i))
 		else: 
 			pass
 			# print(i)
 			# print('not in')
-	# print(sol)
-	return sol
+	# print(solution)
+	return solution, aux
 
-	# print(len(items))
-	# print(result_final[0][0])
+def local_search(solution, aux):
+	print('             default:',solution)
+	solution_aux = solution[:]
+	for i in range(len(solution)):
+		if solution[i] == 1:
+			solution[i] = 0
+		elif solution[i] == 0:
+			solution[i] = 1
+		# print(f'iteration:{i}, solution:{solution}')
+		print(solution == solution_aux)
+		solution[:] = solution_aux		
+
 
 if __name__ == "__main__":
 	number_items, weight_max, values_items, weight_items = get_result()
@@ -100,7 +111,8 @@ if __name__ == "__main__":
 	# print(efficiency(number_items, weight_max, values_items, weight_items))
 
 
-	(semi_greedy_construction(number_items, weight_max, values_items, weight_items))
+	solution, aux = (semi_greedy_construction(number_items, weight_max, values_items, weight_items))
+	local_search(solution, aux)
 	# print(semi_greedy_construction(number_items, weight_max, values_items, weight_items))
 	# for i in semi_greedy_construction(number_items, weight_max, values_items, weight_items):
 		# print(i)
