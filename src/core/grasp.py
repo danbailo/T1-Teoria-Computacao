@@ -54,13 +54,44 @@ def semi_greedy_construction(number_items, weight_max, values_items, weight_item
 	for i in range(number_items): 
 		items[i] = efficiency[i], values_items[i], weight_items[i]
 	items = sorted(items.values(), reverse=True)
-	result_final = 0
+
+	# print(items)
+
+	window = 2
+	# print(items[random.randint(0,window-1)])
+	result_final = []
 	weight = 0
-	for _,values_items, weight_items in items:
-		if ((weight_items+weight) < weight_max) and (weight_items < weight_max): 
-			result_final += values_items
-			weight += weight_items
-	return items		
+
+	aux = items[:]
+
+	while len(items)>=window:
+		index = random.randint(0,window-1)
+		weight_item = items[index][2]
+		if ((weight_item+weight) < weight_max) and (weight_item < weight_max): 
+			result_final.append(items.pop(index))
+			weight += weight_item
+		else: break
+		#tratar o caso onde o tamanho dos itens sao menores do q a janela
+
+	sol = [0 for i in range(number_items)]
+
+	# print(aux)
+	# print(result_final)
+
+	for i in aux:
+		if i in result_final: 
+			# print(aux.index(i))
+			sol[aux.index(i)] = 1
+			# print(aux.index(i))
+		else: 
+			pass
+			# print(i)
+			# print('not in')
+	# print(sol)
+	return sol
+
+	# print(len(items))
+	# print(result_final[0][0])
 
 if __name__ == "__main__":
 	number_items, weight_max, values_items, weight_items = get_result()
@@ -68,9 +99,13 @@ if __name__ == "__main__":
 	# print(exact(number_items, weight_max, values_items, weight_items))
 	# print(efficiency(number_items, weight_max, values_items, weight_items))
 
+
+	(semi_greedy_construction(number_items, weight_max, values_items, weight_items))
 	# print(semi_greedy_construction(number_items, weight_max, values_items, weight_items))
-	for i in semi_greedy_construction(number_items, weight_max, values_items, weight_items):
-		print(i)
+	# for i in semi_greedy_construction(number_items, weight_max, values_items, weight_items):
+		# print(i)
 
 	# random.seed(1)
 	# print(random.randint(1,100))		
+
+	
