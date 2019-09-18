@@ -1,8 +1,6 @@
 import numpy as np
 import random
 
-random.seed(0)
-
 def exact(number_items, weight_max, values_items, weight_items):
     K = np.zeros((number_items+1, weight_max+1), dtype=np.int32)
     for i in range(number_items+1): 
@@ -50,7 +48,8 @@ def get_result():
 				weight_max = int(inst[0])
 	return number_items, weight_max, values_items, weight_items
 
-def semi_greedy_construction(number_items, weight_max, values_items, weight_items):
+def semi_greedy_construction(seed, number_items, weight_max, values_items, weight_items):
+	# random.seed(seed)
 	efficiency = np.divide(values_items, weight_items)
 	items = {}
 	for i in range(number_items): 
@@ -106,8 +105,8 @@ def local_search(solution, aux, weight_max):
 			# default_weight.append(aux[i][2])
 			# print(aux[i][1])
 
-	print('default solution for value:',default_value)
-	print('default solution for weight:',default_weight)
+	# print('default solution for value:',default_value)
+	# print('default solution for weight:',default_weight)
 
 ###########
 #PRECISO OTIMIZAR ESSE CODIGO
@@ -132,11 +131,21 @@ def local_search(solution, aux, weight_max):
 			if solution[j] == 1:
 				value += aux[j][1]
 				weight += aux[j][2]
-		print('value:',value)
-		print('weight:',weight)				
-		print()
+		if weight < default_weight and value > default_value:
+			default_value = value
+			default_weight = weight
+	# print('new value:',default_value)
+	# print('new weight:',default_weight)
+	return default_value
 
 
+def grasp(max_it, seed, number_items, weight_max, values_items, weight_items):
+	best_solution = 0
+	for i in range(max_it):
+		solution, aux = semi_greedy_construction(seed, number_items, weight_max, values_items, weight_items)
+		solution = local_search(solution, aux, weight_max)
+		if solution > best_solution: best_solution = solution
+	return best_solution			
 
 if __name__ == "__main__":
 	number_items, weight_max, values_items, weight_items = get_result()
@@ -145,13 +154,16 @@ if __name__ == "__main__":
 	# print(efficiency(number_items, weight_max, values_items, weight_items))
 
 
-	solution, aux = (semi_greedy_construction(number_items, weight_max, values_items, weight_items))
-	local_search(solution, aux, weight_max)
+
+	# solution, aux = semi_greedy_construction(number_items, weight_max, values_items, weight_items)
+	# local_search(solution, aux, weight_max)
+
 	# print(semi_greedy_construction(number_items, weight_max, values_items, weight_items))
 	# for i in semi_greedy_construction(number_items, weight_max, values_items, weight_items):
 		# print(i)
 
-	# random.seed(1)
-	# print(random.randint(1,100))		
+	print(grasp(100, 0, number_items, weight_max, values_items, weight_items))
+
+
 
 	
