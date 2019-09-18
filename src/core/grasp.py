@@ -91,8 +91,30 @@ def semi_greedy_construction(number_items, weight_max, values_items, weight_item
 	# print(solution)
 	return solution, aux
 
-def local_search(solution, aux):
-	print('             default:',solution)
+def local_search(solution, aux, weight_max):
+	default_value = 0
+	default_weight = 0
+	# default_value = []
+	# default_weight = []
+
+
+	for i in range(len(solution)):
+		if solution[i] == 1:
+			default_value += aux[i][1]
+			default_weight += aux[i][2]
+			# value.append(aux[i][1])
+			# default_weight.append(aux[i][2])
+			# print(aux[i][1])
+
+	print('default solution for value:',default_value)
+	print('default solution for weight:',default_weight)
+
+###########
+#PRECISO OTIMIZAR ESSE CODIGO
+###########
+
+	all_solutions = []
+
 	solution_aux = solution[:]
 	for i in range(len(solution)):
 		if solution[i] == 1:
@@ -100,8 +122,20 @@ def local_search(solution, aux):
 		elif solution[i] == 0:
 			solution[i] = 1
 		# print(f'iteration:{i}, solution:{solution}')
-		print(solution == solution_aux)
+		all_solutions.append(solution[:])
 		solution[:] = solution_aux		
+
+	for solution in all_solutions:
+		value = 0
+		weight = 0		
+		for j in range(len(solution)):
+			if solution[j] == 1:
+				value += aux[j][1]
+				weight += aux[j][2]
+		print('value:',value)
+		print('weight:',weight)				
+		print()
+
 
 
 if __name__ == "__main__":
@@ -112,7 +146,7 @@ if __name__ == "__main__":
 
 
 	solution, aux = (semi_greedy_construction(number_items, weight_max, values_items, weight_items))
-	local_search(solution, aux)
+	local_search(solution, aux, weight_max)
 	# print(semi_greedy_construction(number_items, weight_max, values_items, weight_items))
 	# for i in semi_greedy_construction(number_items, weight_max, values_items, weight_items):
 		# print(i)
