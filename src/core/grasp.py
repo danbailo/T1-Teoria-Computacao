@@ -153,15 +153,6 @@ if __name__ == "__main__":
 	# print(exact(number_items, weight_max, values_items, weight_items))
 	# print(efficiency(number_items, weight_max, values_items, weight_items))
 
-
-
-	# solution, aux = semi_greedy_construction(number_items, weight_max, values_items, weight_items)
-	# local_search(solution, aux, weight_max)
-
-	# print(semi_greedy_construction(number_items, weight_max, values_items, weight_items))
-	# for i in semi_greedy_construction(number_items, weight_max, values_items, weight_items):
-		# print(i)
-
 	print(grasp(100, 0, number_items, weight_max, values_items, weight_items))
 
 
