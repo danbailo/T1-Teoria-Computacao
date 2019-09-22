@@ -29,7 +29,7 @@ def semi_greedy_construction(window, number_items, weight_max, values_items, wei
 			weight += weight_item
 		else: items.pop(index)
 
-	solution = [0 for i in range(number_items)]
+	solution = np.zeros(number_items,dtype=np.int16)
 
 	for aux_value in aux:
 		if aux_value in result_final: solution[aux.index(aux_value)] = 1
@@ -55,8 +55,7 @@ def local_search(solution, aux, value, weight_max):
 		if new_weight <= weight_max and new_value > value:
 			new_solution = solution[:]
 			value = new_value
-
-	if new_solution == solution_aux: 
+	if new_solution.all() == solution_aux.all(): 
 		return value
 	return local_search(solution, aux, value, weight_max)
 
@@ -67,6 +66,4 @@ def grasp(max_it, window, number_items, weight_max, values_items, weight_items):
 		solution = local_search(solution, aux, value, weight_max)
 		print(solution)
 		if solution > best_solution: best_solution = solution
-	return best_solution			
-
-
+	return best_solution
