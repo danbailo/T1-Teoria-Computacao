@@ -1,4 +1,5 @@
 import os
+from time import time
 import core
 
 def get_instances(directory):
@@ -30,10 +31,14 @@ def get_results(directory, max_it, window):
 				elif state == 2:
 					weight_max = int(inst[0])
 
-			decrescent[input_file] = core.decrescent(number_items, weight_max, values_items, weight_items)						
-			crescent[input_file] = core.crescent(number_items, weight_max, values_items, weight_items)							
-			efficiency[input_file] = core.efficiency(number_items, weight_max, values_items, weight_items)
-			grasp[input_file] = core.grasp(max_it, window, number_items, weight_max, values_items, weight_items)
+			start = time()
+			decrescent[input_file] = [core.decrescent(number_items, weight_max, values_items, weight_items), time()-start]
+			start = time()
+			crescent[input_file] = [core.crescent(number_items, weight_max, values_items, weight_items), time()-start]
+			start = time()
+			efficiency[input_file] = [core.efficiency(number_items, weight_max, values_items, weight_items), time()-start]			
+			start = time()
+			grasp[input_file] = [core.grasp(max_it, window, number_items, weight_max, values_items, weight_items), time()-start]
 	
 	return decrescent, crescent, efficiency, grasp
 
