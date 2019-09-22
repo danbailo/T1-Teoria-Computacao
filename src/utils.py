@@ -4,11 +4,13 @@ import core
 def get_instances(directory):
 	return sorted(os.listdir(os.path.join('..',directory)), key=lambda k:int(k.strip('input.in')))
 
-def get_results(directory):	
+def get_results(directory, max_it, window):	
 
 	decrescent = {}
 	crescent = {}
 	efficiency = {}
+	grasp = {}
+
 
 	for input_file in get_instances(directory): 
 		with open(os.path.join('..',directory,input_file)) as file: 
@@ -31,8 +33,9 @@ def get_results(directory):
 			decrescent[input_file] = core.decrescent(number_items, weight_max, values_items, weight_items)						
 			crescent[input_file] = core.crescent(number_items, weight_max, values_items, weight_items)							
 			efficiency[input_file] = core.efficiency(number_items, weight_max, values_items, weight_items)
+			grasp[input_file] = core.grasp(max_it, window, number_items, weight_max, values_items, weight_items)
 	
-	return decrescent, crescent, efficiency
+	return decrescent, crescent, efficiency, grasp
 
 def create_imgs_directory():
 	if not os.path.exists(os.path.join('..','imgs')):
