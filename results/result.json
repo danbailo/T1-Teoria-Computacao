@@ -1,0 +1,114 @@
+{
+    "input1.in": {
+        "Crescente": 14578,
+        "Decrescente": 22911,
+        "Eficiente": 29636,
+        "GRASP": 31621,
+        "Exato": 31621
+    },
+    "input2.in": {
+        "Crescente": 19957,
+        "Decrescente": 9893,
+        "Eficiente": 64939,
+        "GRASP": 67829,
+        "Exato": 67829
+    },
+    "input3.in": {
+        "Crescente": 38379,
+        "Decrescente": 19893,
+        "Eficiente": 143449,
+        "GRASP": 143449,
+        "Exato": 143449
+    },
+    "input4.in": {
+        "Crescente": 21347,
+        "Decrescente": 23630,
+        "Eficiente": 28840,
+        "GRASP": 28840,
+        "Exato": 28840
+    },
+    "input5.in": {
+        "Crescente": 5335,
+        "Decrescente": 10844,
+        "Eficiente": 15785,
+        "GRASP": 15785,
+        "Exato": 15785
+    },
+    "input6.in": {
+        "Crescente": 6,
+        "Decrescente": 63881,
+        "Eficiente": 99861,
+        "GRASP": 99861,
+        "Exato": 99861
+    },
+    "input7.in": {
+        "Crescente": 505,
+        "Decrescente": 1148,
+        "Eficiente": 1894,
+        "GRASP": 1922,
+        "Exato": 1940
+    },
+    "input8.in": {
+        "Crescente": 714,
+        "Decrescente": 510,
+        "Eficiente": 714,
+        "GRASP": 720,
+        "Exato": 741
+    },
+    "input9.in": {
+        "Crescente": 9717,
+        "Decrescente": 9994,
+        "Eficiente": 9717,
+        "GRASP": 9755,
+        "Exato": 10281
+    },
+    "input10.in": {
+        "Crescente": 17523,
+        "Decrescente": 19994,
+        "Eficiente": 17523,
+        "GRASP": 19246,
+        "Exato": 20149
+    },
+    "input11.in": {
+        "Crescente": 26212,
+        "Decrescente": 29943,
+        "Eficiente": 29943,
+        "GRASP": 29965,
+        "Exato": 30001
+    },
+    "input12.in": {
+        "Crescente": 49622,
+        "Decrescente": 49884,
+        "Eficiente": 49884,
+        "GRASP": 49885,
+        "Exato": 49885
+    },
+    "input13.in": {
+        "Crescente": 49262,
+        "Decrescente": 49395,
+        "Eficiente": 49395,
+        "GRASP": 49395,
+        "Exato": 49398
+    },
+    "input14.in": {
+        "Crescente": 0,
+        "Decrescente": 20880,
+        "Eficiente": 20880,
+        "GRASP": 20880,
+        "Exato": 20880
+    },
+    "input15.in": {
+        "Crescente": 0,
+        "Decrescente": 20676,
+        "Eficiente": 20676,
+        "GRASP": 20676,
+        "Exato": 20676
+    },
+    "input16.in": {
+        "Crescente": 2755,
+        "Decrescente": 10503,
+        "Eficiente": 46218,
+        "GRASP": 46281,
+        "Exato": 46281
+    }
+}
