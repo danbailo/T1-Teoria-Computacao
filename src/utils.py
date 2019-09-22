@@ -1,17 +1,21 @@
 import os
 from time import time
+import json
 import core
+
 
 def get_instances(directory):
 	return sorted(os.listdir(os.path.join('..',directory)), key=lambda k:int(k.strip('input.in')))
 
 def get_results(directory, max_it, window):	
 
+	data = {}
+
 	decrescent = {}
 	crescent = {}
 	efficiency = {}
 	grasp = {}
-
+	exact = {}
 
 	for input_file in get_instances(directory): 
 		with open(os.path.join('..',directory,input_file)) as file: 
@@ -32,15 +36,37 @@ def get_results(directory, max_it, window):
 					weight_max = int(inst[0])
 
 			start = time()
-			decrescent[input_file] = [core.decrescent(number_items, weight_max, values_items, weight_items), time()-start]
+			crescent = core.crescent(number_items, weight_max, values_items, weight_items)
+			time_crescent = time()-start
+			
+			start = time()			
+			decrescent= core.decrescent(number_items, weight_max, values_items, weight_items)
+			time_decrescent = time()-start
+
 			start = time()
-			crescent[input_file] = [core.crescent(number_items, weight_max, values_items, weight_items), time()-start]
+			efficiency = core.efficiency(number_items, weight_max, values_items, weight_items)		
+			time_efficiency = time()-start
+			
 			start = time()
-			efficiency[input_file] = [core.efficiency(number_items, weight_max, values_items, weight_items), time()-start]			
+			grasp = core.grasp(max_it, window, number_items, weight_max, values_items, weight_items)
+			time_grasp = time()-start
+			
 			start = time()
-			grasp[input_file] = [core.grasp(max_it, window, number_items, weight_max, values_items, weight_items), time()-start]
-	
-	return decrescent, crescent, efficiency, grasp
+			exact = int(core.exact(number_items, weight_max, values_items, weight_items))
+			time_exact = time()-start
+
+			data[input_file] = {
+				'crescent': crescent, 'time_crescent': time_crescent,
+				'decrescent': decrescent, 'time_decrescent': time_decrescent,
+				'efficiency': efficiency, 'time_efficiency': time_efficiency,
+				'grasp': grasp, 'time_grasp': time_grasp,
+				'exact': exact, 'time_exact': time_exact
+			}
+
+	with open('./result.json','w') as file: file.write(json.dumps(data,indent=4))
+	return data
+
+
 
 def create_imgs_directory():
 	if not os.path.exists(os.path.join('..','imgs')):
