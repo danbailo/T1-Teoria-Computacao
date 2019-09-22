@@ -1,5 +1,6 @@
 import numpy as np
 import random
+from time import time
 
 random.seed(42)
 
@@ -61,9 +62,14 @@ def local_search(solution, aux, value, weight_max):
 
 def grasp(max_it, window, number_items, weight_max, values_items, weight_items):
 	best_solution = 0
+	start = time()
 	for i in range(max_it):
 		solution, aux, value = semi_greedy_construction(window, number_items, weight_max, values_items, weight_items)
-		solution = local_search(solution, aux, value, weight_max)
-		print(solution)
-		if solution > best_solution: best_solution = solution
-	return best_solution
+		solution = local_search(solution, aux, value, weight_max)	
+		if solution > best_solution: 
+			best_solution = solution
+			verify = 0
+		if solution != best_solution:
+			verify += 1
+			if verify == max_it*0.1: return best_solution, time()-start
+	return best_solution, time()-start
