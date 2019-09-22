@@ -14,6 +14,14 @@ hooks = [
 	('Exato', core.exact)
 ]
 
+def create_imgs_directory():
+	if not os.path.exists(os.path.join('..','imgs')):
+		os.makedirs(os.path.join('..','imgs'))
+
+def create_results_directory():
+	if not os.path.exists(os.path.join('..','results')):
+		os.makedirs(os.path.join('..','results'))
+
 def get_instances(directory):
 	return sorted(os.listdir(os.path.join('..',directory)), key=lambda k:int(k.strip('input.in')))
 
@@ -45,13 +53,8 @@ def get_results(directory):
 				start = time()
 				result[input_file][name] = f(number_items, weight_max,values_items, weight_items)
 				time_results[input_file][name] = time() - start
-	with open('./result.json','w') as file: file.write(json.dumps(result,indent=4))
-	with open('./time.json','w') as file: file.write(json.dumps(time_results,indent=4))
-	return result,time_results
-
-def create_imgs_directory():
-	if not os.path.exists(os.path.join('..','imgs')):
-		os.makedirs(os.path.join('..','imgs'))
+	with open(os.path.join('..','results','result.json'),'w') as file: file.write(json.dumps(result,indent=4))
+	with open(os.path.join('..','results','time.json'),'w') as file: file.write(json.dumps(time_results,indent=4))
 
 #debugger
 # if __name__ == "__main__":
