@@ -9,13 +9,8 @@ def get_instances(directory):
 
 def get_results(directory, max_it, window):	
 
-	data = {}
-
-	decrescent = {}
-	crescent = {}
-	efficiency = {}
-	grasp = {}
-	exact = {}
+	result = {}
+	time_results = {}
 
 	for input_file in get_instances(directory): 
 		with open(os.path.join('..',directory,input_file)) as file: 
@@ -55,16 +50,26 @@ def get_results(directory, max_it, window):
 			exact = int(core.exact(number_items, weight_max, values_items, weight_items))
 			time_exact = time()-start
 
-			data[input_file] = {
-				'crescent': crescent, 'time_crescent': time_crescent,
-				'decrescent': decrescent, 'time_decrescent': time_decrescent,
-				'efficiency': efficiency, 'time_efficiency': time_efficiency,
-				'grasp': grasp, 'time_grasp': time_grasp,
-				'exact': exact, 'time_exact': time_exact
+			result[input_file] = {
+				'1. Crescente': crescent, 
+				'2. Decrescente': decrescent,
+				'3. Eficiente': efficiency,
+				'4. GRASP': grasp,
+				'5. Exato': exact
 			}
 
-	with open('./result.json','w') as file: file.write(json.dumps(data,indent=4))
-	return data
+			time_results[input_file] = {
+				'1. TEMPO-Crescente': time_crescent,
+				'2. TEMPO-Decrescente': time_decrescent,
+				'3. TEMPO-Eficiente': time_efficiency,
+				'4. TEMPO-GRASP': time_grasp,
+				'5. TEMPO-Exato': time_exact
+			}
+
+	with open('./result.json','w') as file: file.write(json.dumps(result,indent=4))
+	with open('./time.json','w') as file: file.write(json.dumps(time_results,indent=4))
+
+	return result,time_results
 
 
 
