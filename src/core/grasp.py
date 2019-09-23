@@ -1,7 +1,32 @@
 import numpy as np
 import random
+import os
+from time import time
 
 random.seed(42)
+
+def get_instances(directory):
+	return sorted(os.listdir(os.path.join('..',directory)), key=lambda k:int(k.strip('input.in')))
+
+def get_data(directory):	
+	for input_file in get_instances(directory): 
+		with open(os.path.join('..',directory,input_file)) as file: 
+			state = 0
+			weight_items = []
+			values_items = []
+			for line in file: 
+				inst = line.split()
+				if state == 0:
+					number_items = int(inst[0])
+					state = 1
+				elif state == 1:
+					item_id = int(inst[0])
+					values_items.append(int(inst[1]))
+					weight_items.append(int(inst[2]))
+					if item_id == number_items: state = 2
+				elif state == 2:
+					weight_max = int(inst[0])
+	return number_items, weight_max, values_items, weight_items			
 
 def semi_greedy_construction(window, number_items, weight_max, values_items, weight_items):
 	efficiency = np.divide(values_items, weight_items)
@@ -63,3 +88,11 @@ def grasp(max_it, window, number_items, weight_max, values_items, weight_items):
 			verify += 1
 			if verify == max_it*0.1: return best_solution
 	return best_solution
+
+if __name__ == "__main__":
+	number_items, weight_max, values_items, weight_items = get_data('../inputs')
+	
+
+	start = time()
+	print(grasp(100000, 2, number_items, weight_max, values_items, weight_items))
+	print (time() - start)

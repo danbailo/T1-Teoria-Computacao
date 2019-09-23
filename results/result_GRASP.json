@@ -1,0 +1,44 @@
+{
+    "input1.in": {
+        "MAX_IT-10": {
+            "Window: = 2": 29813,
+            "Window: = 3": 29636,
+            "Window: = 4": 29391,
+            "Window: = 5": 29813,
+            "Window: = 6": 27005,
+            "Window: = 7": 29420,
+            "Window: = 8": 31621,
+            "Window: = 9": 29813
+        },
+        "MAX_IT-100": {
+            "Window: = 2": 31621,
+            "Window: = 3": 31621,
+            "Window: = 4": 31621,
+            "Window: = 5": 30548,
+            "Window: = 6": 31621,
+            "Window: = 7": 31621,
+            "Window: = 8": 29391,
+            "Window: = 9": 31621
+        },
+        "MAX_IT-1000": {
+            "Window: = 2": 31621,
+            "Window: = 3": 31621,
+            "Window: = 4": 31621,
+            "Window: = 5": 31621,
+            "Window: = 6": 31621,
+            "Window: = 7": 31621,
+            "Window: = 8": 31621,
+            "Window: = 9": 31621
+        },
+        "MAX_IT-10000": {
+            "Window: = 2": 31621,
+            "Window: = 3": 31621,
+            "Window: = 4": 31621,
+            "Window: = 5": 31621,
+            "Window: = 6": 31621,
+            "Window: = 7": 31621,
+            "Window: = 8": 31621,
+            "Window: = 9": 31621
+        }
+    }
+}

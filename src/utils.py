@@ -64,6 +64,8 @@ def get_GRASP_results(directory):
 	iters = [10,100,1000,10000]
 
 	for input_file in get_instances(directory): 
+		result[input_file] = {}
+		time_results[input_file] = {}
 		with open(os.path.join('..',directory,input_file)) as file: 
 			state = 0
 			weight_items = []
@@ -80,12 +82,15 @@ def get_GRASP_results(directory):
 					if item_id == number_items: state = 2
 				elif state == 2:
 					weight_max = int(inst[0])
-			result[input_file] = {}
 			for max_it in iters:
+				result[input_file]["MAX_IT-"+str(max_it)] = {}
+				time_results[input_file]["MAX_IT-"+str(max_it)] = {}
 				for window in windows:
+					# result[input_file][max_it][window] = {}
+					# time_results[input_file][max_it][window] = {}
 					start = time()
-					result[input_file]["MAX_IT-"+str(max_it)]["Window-"+str(window)] = core.grasp(max_it, window, number_items, weight_max, values_items, weight_items)
-					time_results[input_file]["MAX_IT"-+str(max_it)]["Window-"+str(window)] = time() - start
+					result[input_file]["MAX_IT-"+str(max_it)]["Window: = "+str(window)] = core.grasp(max_it, window, number_items, weight_max, values_items, weight_items)
+					time_results[input_file]["MAX_IT-"+str(max_it)]["Window = "+str(window)] = time() - start
 
 	with open(os.path.join('..','results','result_GRASP.json'),'w') as file: file.write(json.dumps(result,indent=4))
 	with open(os.path.join('..','results','time_GRASP.json'),'w') as file: file.write(json.dumps(time_results,indent=4))
