@@ -554,22 +554,19 @@ como o mesmo é executado de forma sequencial, o hardware desta máquina é mais
 
 \begin{figure}
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-        \begin{Verbatim}[commandchars=\\\{\},xleftmargin=-5mm]
+        \begin{Verbatim}[commandchars=\\\{\}]
         \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
         
         \PY{k}{def} \PY{n+nf}{exact}\PY{p}{(}\PY{n}{number\PYZus{}items}\PY{p}{,} \PY{n}{weight\PYZus{}max}\PY{p}{,} \PY{n}{values\PYZus{}items}\PY{p}{,} \PY{n}{weight\PYZus{}items}\PY{p}{)}\PY{p}{:}
             \PY{n}{K} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{number\PYZus{}items}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{weight\PYZus{}max}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{dtype}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{int32}\PY{p}{)}
             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{number\PYZus{}items}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:} 
                 \PY{k}{for} \PY{n}{weight} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{weight\PYZus{}max}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:} 
-                    \PY{k}{if} \PY{n}{i}\PY{o}{==}\PY{l+m+mi}{0} \PY{o+ow}{or} \PY{n}{weight}\PY{o}{==}\PY{l+m+mi}{0}\PY{p}{:} 
-                        \PY{n}{K}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{n}{w}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{0} 
-                    \PY{k}{elif} \PY{n}{weight\PYZus{}items}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{weight}\PY{p}{:} 
-                        \PY{n}{K}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{n}{weight}\PY{p}{]} \PY{o}{=} \PY{n+nb}{max}\PY{p}{(}\PY{n}{values\PYZus{}items}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+} \PY{n}{K}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{n}{weight}\PY{o}{\PYZhy{}}\PY{n}{weight\PYZus{}items}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]}\PY{p}{,} \PY{n}{K}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{n}{weight}\PY{p}{]}\PY{p}{)}
-                    \PY{k}{else}\PY{p}{:} 
-                        \PY{n}{K}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{n}{weight}\PY{p}{]} \PY{o}{=} \PY{n}{K}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{n}{weight}\PY{p}{]}    
-            \PY{k}{return} \PY{n}{K}\PY{p}{[}\PY{n}{number\PYZus{}items}\PY{p}{]}\PY{p}{[}\PY{n}{weight\PYZus{}max}\PY{p}{]}
+                    \PY{k}{if} \PY{n}{i}\PY{o}{==}\PY{l+m+mi}{0} \PY{o+ow}{or} \PY{n}{weight}\PY{o}{==}\PY{l+m+mi}{0}\PY{p}{:} \PY{n}{K}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{n}{weight}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{0} 
+                    \PY{k}{elif} \PY{n}{weight\PYZus{}items}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{weight}\PY{p}{:} \PY{n}{K}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{n}{weight}\PY{p}{]} \PY{o}{=} \PY{n+nb}{max}\PY{p}{(}\PY{n}{values\PYZus{}items}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+} \PY{n}{K}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{n}{weight}\PY{o}{\PYZhy{}}\PY{n}{weight\PYZus{}items}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]}\PY{p}{,} \PY{n}{K}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{n}{weight}\PY{p}{]}\PY{p}{)}
+                    \PY{k}{else}\PY{p}{:} \PY{n}{K}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{n}{weight}\PY{p}{]} \PY{o}{=} \PY{n}{K}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{n}{weight}\PY{p}{]}    
+            \PY{k}{return} \PY{n+nb}{int}\PY{p}{(}\PY{n}{K}\PY{p}{[}\PY{n}{number\PYZus{}items}\PY{p}{]}\PY{p}{[}\PY{n}{weight\PYZus{}max}\PY{p}{]}\PY{p}{)}	
         \end{Verbatim}
-    \end{tcolorbox}
+        \end{tcolorbox}
     \caption{\textbf{Algoritmo 1.} Exato}
     \label{exact}
 \end{figure}
@@ -580,24 +577,21 @@ como o mesmo é executado de forma sequencial, o hardware desta máquina é mais
 Nesta primeira Heurística, temos que os pesos dos itens foram ordenados de forma crescente.
 \begin{figure}
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-        \begin{Verbatim}[commandchars=\\\{\},xleftmargin=-5mm]
+        \begin{Verbatim}[commandchars=\\\{\}]
         \PY{k}{def} \PY{n+nf}{crescent}\PY{p}{(}\PY{n}{number\PYZus{}items}\PY{p}{,} \PY{n}{weight\PYZus{}max}\PY{p}{,} \PY{n}{values\PYZus{}items}\PY{p}{,} \PY{n}{weight\PYZus{}items}\PY{p}{)}\PY{p}{:}
             \PY{n}{items} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
-            \PY{k}{for} \PY{n}{it} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{number\PYZus{}items}\PY{p}{)}\PY{p}{:} 
-                \PY{n}{items}\PY{p}{[}\PY{n}{it}\PY{p}{]} \PY{o}{=} \PY{n}{values\PYZus{}items}\PY{p}{[}\PY{n}{it}\PY{p}{]}\PY{p}{,}\PY{n}{weight\PYZus{}items}\PY{p}{[}\PY{n}{it}\PY{p}{]}	
-            \PY{k}{del} \PY{n}{values\PYZus{}items}\PY{p}{,} \PY{n}{weight\PYZus{}items}
-            
+            \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{number\PYZus{}items}\PY{p}{)}\PY{p}{:} \PY{n}{items}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{values\PYZus{}items}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,}\PY{n}{weight\PYZus{}items}\PY{p}{[}\PY{n}{i}\PY{p}{]}	
             \PY{n}{items} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{items}\PY{o}{.}\PY{n}{values}\PY{p}{(}\PY{p}{)}\PY{p}{)}
-            \PY{n}{result\PYZus{}final} \PY{o}{=} \PY{p}{[}\PY{p}{]}
-            \PY{n}{weight} \PY{o}{=} \PY{p}{[}\PY{p}{]}
-            
+            \PY{n}{result\PYZus{}final} \PY{o}{=} \PY{l+m+mi}{0}
+            \PY{n}{weight} \PY{o}{=} \PY{l+m+mi}{0}
             \PY{k}{for} \PY{n}{values\PYZus{}items}\PY{p}{,}\PY{n}{weight\PYZus{}items} \PY{o+ow}{in} \PY{n}{items}\PY{p}{:}
-                \PY{k}{if} \PY{n}{weight\PYZus{}items}\PY{o}{+}\PY{n+nb}{sum}\PY{p}{(}\PY{n}{weight}\PY{p}{)} \PY{o}{\PYZlt{}} \PY{n}{weight\PYZus{}max} \PY{o+ow}{and} \PY{n}{weight\PYZus{}items} \PY{o}{\PYZlt{}} \PY{n}{weight\PYZus{}max}\PY{p}{:} 
-                    \PY{n}{result\PYZus{}final}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{values\PYZus{}items}\PY{p}{)}
-                    \PY{n}{weight}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{weight\PYZus{}items}\PY{p}{)}	
-            \PY{k}{return} \PY{n+nb}{sum}\PY{p}{(}\PY{n}{result\PYZus{}final}\PY{p}{)}
+                \PY{k}{if} \PY{n}{weight\PYZus{}items}\PY{o}{+}\PY{n}{weight} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{weight\PYZus{}max}\PY{p}{:}
+                    \PY{n}{result\PYZus{}final} \PY{o}{+}\PY{o}{=} \PY{n}{values\PYZus{}items}
+                    \PY{n}{weight} \PY{o}{+}\PY{o}{=} \PY{n}{weight\PYZus{}items}
+            \PY{k}{return} \PY{n}{result\PYZus{}final}
         \end{Verbatim}
-    \end{tcolorbox}
+        \end{tcolorbox}
+        
     \caption{\textbf{Algoritmo 2.} Crescente}
     \label{crescent}
 \end{figure}
@@ -606,24 +600,21 @@ Nesta segunda Heurística, temos que os pesos dos itens foram ordenados de forma
 
 \begin{figure}
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-        \begin{Verbatim}[commandchars=\\\{\},xleftmargin=-5mm]
+        \begin{Verbatim}[commandchars=\\\{\}]
         \PY{k}{def} \PY{n+nf}{decrescent}\PY{p}{(}\PY{n}{number\PYZus{}items}\PY{p}{,} \PY{n}{weight\PYZus{}max}\PY{p}{,} \PY{n}{values\PYZus{}items}\PY{p}{,} \PY{n}{weight\PYZus{}items}\PY{p}{)}\PY{p}{:}
             \PY{n}{items} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
-            \PY{k}{for} \PY{n}{it} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{number\PYZus{}items}\PY{p}{)}\PY{p}{:}
-                \PY{n}{items}\PY{p}{[}\PY{n}{it}\PY{p}{]} \PY{o}{=} \PY{n}{values\PYZus{}items}\PY{p}{[}\PY{n}{it}\PY{p}{]}\PY{p}{,}\PY{n}{weight\PYZus{}items}\PY{p}{[}\PY{n}{it}\PY{p}{]}	
-            \PY{k}{del} \PY{n}{values\PYZus{}items}\PY{p}{,} \PY{n}{weight\PYZus{}items}
-            
+            \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{number\PYZus{}items}\PY{p}{)}\PY{p}{:} \PY{n}{items}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{values\PYZus{}items}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,}\PY{n}{weight\PYZus{}items}\PY{p}{[}\PY{n}{i}\PY{p}{]}	
             \PY{n}{items} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{items}\PY{o}{.}\PY{n}{values}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{reverse}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
-            \PY{n}{result\PYZus{}final} \PY{o}{=} \PY{p}{[}\PY{p}{]}
-            \PY{n}{weight} \PY{o}{=} \PY{p}{[}\PY{p}{]}
-            
+            \PY{n}{result\PYZus{}final} \PY{o}{=} \PY{l+m+mi}{0}
+            \PY{n}{weight} \PY{o}{=} \PY{l+m+mi}{0}
             \PY{k}{for} \PY{n}{values\PYZus{}items}\PY{p}{,}\PY{n}{weight\PYZus{}items} \PY{o+ow}{in} \PY{n}{items}\PY{p}{:}
-                \PY{k}{if} \PY{n}{weight\PYZus{}items}\PY{o}{+}\PY{n+nb}{sum}\PY{p}{(}\PY{n}{weight}\PY{p}{)} \PY{o}{\PYZlt{}} \PY{n}{weight\PYZus{}max} \PY{o+ow}{and} \PY{n}{weight\PYZus{}items} \PY{o}{\PYZlt{}} \PY{n}{weight\PYZus{}max}\PY{p}{:} 
-                    \PY{n}{result\PYZus{}final}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{values\PYZus{}items}\PY{p}{)}
-                    \PY{n}{weight}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{weight\PYZus{}items}\PY{p}{)}	
-            \PY{k}{return} \PY{n+nb}{sum}\PY{p}{(}\PY{n}{result\PYZus{}final}\PY{p}{)}
+                \PY{k}{if} \PY{n}{weight\PYZus{}items}\PY{o}{+}\PY{n}{weight} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{weight\PYZus{}max}\PY{p}{:}
+                    \PY{n}{result\PYZus{}final} \PY{o}{+}\PY{o}{=} \PY{n}{values\PYZus{}items}
+                    \PY{n}{weight} \PY{o}{+}\PY{o}{=} \PY{n}{weight\PYZus{}items}
+            \PY{k}{return} \PY{n}{result\PYZus{}final}
         \end{Verbatim}
-    \end{tcolorbox}
+        \end{tcolorbox}
+        
     \caption{\textbf{Algoritmo 3.} Decrescente}
     \label{decrescent}
 \end{figure}
@@ -632,72 +623,121 @@ Nesta terceira Heurística, temos que os os itens foram ordenados de acordo com 
 da razão $\frac{valor}{peso}$ de forma crescente.
 
 \begin{figure}
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-        \begin{Verbatim}[commandchars=\\\{\}]
-        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
-        \PY{k}{def} \PY{n+nf}{efficiency}\PY{p}{(}\PY{n}{number\PYZus{}items}\PY{p}{,} \PY{n}{weight\PYZus{}max}\PY{p}{,} \PY{n}{values\PYZus{}items}\PY{p}{,} \PY{n}{weight\PYZus{}items}\PY{p}{)}\PY{p}{:}
-            \PY{n}{value\PYZus{}efficiency} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{values\PYZus{}items}\PY{p}{)}
-            \PY{n}{weight\PYZus{}items\PYZus{}efficiency} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{weight\PYZus{}items}\PY{p}{)}
-            \PY{n}{efficiency} \PY{o}{=} \PY{n}{value\PYZus{}efficiency}\PY{o}{/}\PY{n}{weight\PYZus{}items\PYZus{}efficiency}
-            \PY{n}{efficiency} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n}{efficiency}\PY{p}{)}
-            \PY{n}{items} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
-            \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{number\PYZus{}items}\PY{p}{)}\PY{p}{:} 
-                \PY{n}{items}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{efficiency}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n}{values\PYZus{}items}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n}{weight\PYZus{}items}\PY{p}{[}\PY{n}{i}\PY{p}{]}
-            \PY{k}{del} \PY{n}{values\PYZus{}items}\PY{p}{,} \PY{n}{weight\PYZus{}items}
-            \PY{k}{del} \PY{n}{value\PYZus{}efficiency}\PY{p}{,} \PY{n}{weight\PYZus{}items\PYZus{}efficiency}
-            \PY{n}{items} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{items}\PY{o}{.}\PY{n}{values}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{reverse}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
-            \PY{n}{result\PYZus{}final} \PY{o}{=} \PY{p}{[}\PY{p}{]}
-            \PY{n}{weight} \PY{o}{=} \PY{p}{[}\PY{p}{]}
-            \PY{k}{for} \PY{n}{\PYZus{}}\PY{p}{,}\PY{n}{values\PYZus{}items}\PY{p}{,} \PY{n}{weight\PYZus{}items} \PY{o+ow}{in} \PY{n}{items}\PY{p}{:}
-                \PY{k}{if} \PY{n}{weight\PYZus{}items}\PY{o}{+}\PY{n+nb}{sum}\PY{p}{(}\PY{n}{weight}\PY{p}{)} \PY{o}{\PYZlt{}} \PY{n}{weight\PYZus{}max} \PY{o+ow}{and} \PY{n}{weight\PYZus{}items} \PY{o}{\PYZlt{}} \PY{n}{weight\PYZus{}max}\PY{p}{:} 
-                    \PY{n}{result\PYZus{}final}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{values\PYZus{}items}\PY{p}{)}
-                    \PY{n}{weight}\PY{o}{.}\PY{n}{append}\PY{p}{(} \PY{n}{weight\PYZus{}items}\PY{p}{)}
-            \PY{k}{return} \PY{n+nb}{sum}\PY{p}{(}\PY{n}{result\PYZus{}final}\PY{p}{)}
-        \end{Verbatim}
-        \end{tcolorbox}
+\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+    \begin{Verbatim}[commandchars=\\\{\}]
+    \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+    
+    \PY{k}{def} \PY{n+nf}{efficiency}\PY{p}{(}\PY{n}{number\PYZus{}items}\PY{p}{,} \PY{n}{weight\PYZus{}max}\PY{p}{,} \PY{n}{values\PYZus{}items}\PY{p}{,} \PY{n}{weight\PYZus{}items}\PY{p}{)}\PY{p}{:}
+        \PY{n}{efficiency} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{divide}\PY{p}{(}\PY{n}{values\PYZus{}items}\PY{p}{,} \PY{n}{weight\PYZus{}items}\PY{p}{)}
+        \PY{n}{items} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+        \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{number\PYZus{}items}\PY{p}{)}\PY{p}{:} \PY{n}{items}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{efficiency}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n}{values\PYZus{}items}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n}{weight\PYZus{}items}\PY{p}{[}\PY{n}{i}\PY{p}{]}
+        \PY{n}{items} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{items}\PY{o}{.}\PY{n}{values}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{reverse}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+        \PY{n}{result\PYZus{}final} \PY{o}{=} \PY{l+m+mi}{0}
+        \PY{n}{weight} \PY{o}{=} \PY{l+m+mi}{0}
+        \PY{k}{for} \PY{n}{\PYZus{}}\PY{p}{,}\PY{n}{values\PYZus{}items}\PY{p}{,} \PY{n}{weight\PYZus{}items} \PY{o+ow}{in} \PY{n}{items}\PY{p}{:}
+            \PY{k}{if} \PY{n}{weight\PYZus{}items}\PY{o}{+}\PY{n}{weight} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{weight\PYZus{}max}\PY{p}{:} 
+                \PY{n}{result\PYZus{}final} \PY{o}{+}\PY{o}{=} \PY{n}{values\PYZus{}items}
+                \PY{n}{weight} \PY{o}{+}\PY{o}{=} \PY{n}{weight\PYZus{}items}
+        \PY{k}{return} \PY{n}{result\PYZus{}final}	
+    \end{Verbatim}
+    \end{tcolorbox}
     \caption{\textbf{Algoritmo 4.} Eficiente}
     \label{efficiency}
 \end{figure}
 
 \subsection{Heurística GRASP}
+fase de construcao
+\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+    \prompt{In}{incolor}{10}{\hspace{4pt}}
+    \begin{Verbatim}[commandchars=\\\{\}]
+    \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+    \PY{k+kn}{import} \PY{n+nn}{random}
+    \PY{n}{random}\PY{o}{.}\PY{n}{seed}\PY{p}{(}\PY{l+m+mi}{42}\PY{p}{)}
+    
+    \PY{k}{def} \PY{n+nf}{semi\PYZus{}greedy\PYZus{}construction}\PY{p}{(}\PY{n}{window}\PY{p}{,} \PY{n}{number\PYZus{}items}\PY{p}{,} \PY{n}{weight\PYZus{}max}\PY{p}{,} \PY{n}{values\PYZus{}items}\PY{p}{,} \PY{n}{weight\PYZus{}items}\PY{p}{)}\PY{p}{:}
+        \PY{n}{efficiency} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{divide}\PY{p}{(}\PY{n}{values\PYZus{}items}\PY{p}{,} \PY{n}{weight\PYZus{}items}\PY{p}{)}
+        \PY{n}{items} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+        \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{number\PYZus{}items}\PY{p}{)}\PY{p}{:} 
+            \PY{n}{items}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{efficiency}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n}{values\PYZus{}items}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n}{weight\PYZus{}items}\PY{p}{[}\PY{n}{i}\PY{p}{]}
+        \PY{n}{items} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{items}\PY{o}{.}\PY{n}{values}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{reverse}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+        \PY{n}{result\PYZus{}final} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+        \PY{n}{value} \PY{o}{=} \PY{l+m+mi}{0}
+        \PY{n}{weight} \PY{o}{=} \PY{l+m+mi}{0}
+        \PY{n}{aux} \PY{o}{=} \PY{n}{items}\PY{p}{[}\PY{p}{:}\PY{p}{]}
+        \PY{k}{while} \PY{n+nb}{len}\PY{p}{(}\PY{n}{items}\PY{p}{)} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0} \PY{o+ow}{and} \PY{n}{weight} \PY{o}{\PYZlt{}} \PY{n}{weight\PYZus{}max}\PY{p}{:}
+            \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{items}\PY{p}{)} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{n}{window}\PY{p}{:} \PY{n}{tmp\PYZus{}window} \PY{o}{=} \PY{n}{window} 
+            \PY{k}{else}\PY{p}{:} \PY{n}{tmp\PYZus{}window} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{items}\PY{p}{)}
+            \PY{n}{index} \PY{o}{=} \PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{tmp\PYZus{}window}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+            \PY{n}{value\PYZus{}item} \PY{o}{=} \PY{n}{items}\PY{p}{[}\PY{n}{index}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+            \PY{n}{weight\PYZus{}item} \PY{o}{=} \PY{n}{items}\PY{p}{[}\PY{n}{index}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+            \PY{k}{if} \PY{n}{weight\PYZus{}item}\PY{o}{+}\PY{n}{weight} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{weight\PYZus{}max}\PY{p}{:} 
+                \PY{n}{result\PYZus{}final}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{items}\PY{o}{.}\PY{n}{pop}\PY{p}{(}\PY{n}{index}\PY{p}{)}\PY{p}{)}
+                \PY{n}{value} \PY{o}{+}\PY{o}{=} \PY{n}{value\PYZus{}item}
+                \PY{n}{weight} \PY{o}{+}\PY{o}{=} \PY{n}{weight\PYZus{}item}
+            \PY{k}{else}\PY{p}{:} \PY{n}{items}\PY{o}{.}\PY{n}{pop}\PY{p}{(}\PY{n}{index}\PY{p}{)}
+        \PY{n}{solution} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{number\PYZus{}items}\PY{p}{,}\PY{n}{dtype}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{int16}\PY{p}{)}
+        \PY{k}{for} \PY{n}{aux\PYZus{}value} \PY{o+ow}{in} \PY{n}{aux}\PY{p}{:}
+            \PY{k}{if} \PY{n}{aux\PYZus{}value} \PY{o+ow}{in} \PY{n}{result\PYZus{}final}\PY{p}{:} \PY{n}{solution}\PY{p}{[}\PY{n}{aux}\PY{o}{.}\PY{n}{index}\PY{p}{(}\PY{n}{aux\PYZus{}value}\PY{p}{)}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{1}
+        \PY{k}{return} \PY{n}{solution}\PY{p}{,} \PY{n}{aux}\PY{p}{,} \PY{n}{value}
+    \end{Verbatim}
+    \end{tcolorbox}
+
+busca local
+\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+    \prompt{In}{incolor}{8}{\hspace{4pt}}
+    \begin{Verbatim}[commandchars=\\\{\}]
+    \PY{k}{def} \PY{n+nf}{local\PYZus{}search}\PY{p}{(}\PY{n}{solution}\PY{p}{,} \PY{n}{aux}\PY{p}{,} \PY{n}{value}\PY{p}{,} \PY{n}{weight\PYZus{}max}\PY{p}{)}\PY{p}{:}
+        \PY{n}{all\PYZus{}solutions} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+        \PY{n}{solution\PYZus{}aux} \PY{o}{=} \PY{n}{solution}\PY{p}{[}\PY{p}{:}\PY{p}{]}
+        \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{solution}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+            \PY{k}{if} \PY{n}{solution}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{:} \PY{n}{solution}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{0}
+            \PY{k}{elif} \PY{n}{solution}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:} \PY{n}{solution}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{1}
+            \PY{n}{all\PYZus{}solutions}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{solution}\PY{p}{[}\PY{p}{:}\PY{p}{]}\PY{p}{)}
+            \PY{n}{solution}\PY{p}{[}\PY{p}{:}\PY{p}{]} \PY{o}{=} \PY{n}{solution\PYZus{}aux}		
+        \PY{n}{new\PYZus{}solution} \PY{o}{=} \PY{n}{solution\PYZus{}aux}\PY{p}{[}\PY{p}{:}\PY{p}{]}
+        \PY{k}{for} \PY{n}{solution} \PY{o+ow}{in} \PY{n}{all\PYZus{}solutions}\PY{p}{:}
+            \PY{n}{new\PYZus{}value} \PY{o}{=} \PY{l+m+mi}{0}
+            \PY{n}{new\PYZus{}weight} \PY{o}{=} \PY{l+m+mi}{0}		
+            \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{solution}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                \PY{k}{if} \PY{n}{solution}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{:}
+                    \PY{n}{new\PYZus{}value} \PY{o}{+}\PY{o}{=} \PY{n}{aux}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+                    \PY{n}{new\PYZus{}weight} \PY{o}{+}\PY{o}{=} \PY{n}{aux}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+            \PY{k}{if} \PY{n}{new\PYZus{}weight} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{weight\PYZus{}max} \PY{o+ow}{and} \PY{n}{new\PYZus{}value} \PY{o}{\PYZgt{}} \PY{n}{value}\PY{p}{:}
+                \PY{n}{new\PYZus{}solution} \PY{o}{=} \PY{n}{solution}\PY{p}{[}\PY{p}{:}\PY{p}{]}
+                \PY{n}{value} \PY{o}{=} \PY{n}{new\PYZus{}value}
+        \PY{k}{if} \PY{n}{new\PYZus{}solution}\PY{o}{.}\PY{n}{all}\PY{p}{(}\PY{p}{)} \PY{o}{==} \PY{n}{solution\PYZus{}aux}\PY{o}{.}\PY{n}{all}\PY{p}{(}\PY{p}{)}\PY{p}{:} \PY{k}{return} \PY{n}{value}
+        \PY{k}{return} \PY{n}{local\PYZus{}search}\PY{p}{(}\PY{n}{solution}\PY{p}{,} \PY{n}{aux}\PY{p}{,} \PY{n}{value}\PY{p}{,} \PY{n}{weight\PYZus{}max}\PY{p}{)}
+    \end{Verbatim}
+    \end{tcolorbox}    
+
+grasp
+\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+    \prompt{In}{incolor}{9}{\hspace{4pt}}
+    \begin{Verbatim}[commandchars=\\\{\}]
+    \PY{k}{def} \PY{n+nf}{grasp}\PY{p}{(}\PY{n}{max\PYZus{}it}\PY{p}{,} \PY{n}{window}\PY{p}{,} \PY{n}{number\PYZus{}items}\PY{p}{,} \PY{n}{weight\PYZus{}max}\PY{p}{,} \PY{n}{values\PYZus{}items}\PY{p}{,} \PY{n}{weight\PYZus{}items}\PY{p}{)}\PY{p}{:}
+        \PY{n}{best\PYZus{}solution} \PY{o}{=} \PY{l+m+mi}{0}
+        \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{max\PYZus{}it}\PY{p}{)}\PY{p}{:}
+            \PY{n}{solution}\PY{p}{,} \PY{n}{aux}\PY{p}{,} \PY{n}{value} \PY{o}{=} \PY{n}{semi\PYZus{}greedy\PYZus{}construction}\PY{p}{(}\PY{n}{window}\PY{p}{,} \PY{n}{number\PYZus{}items}\PY{p}{,} \PY{n}{weight\PYZus{}max}\PY{p}{,} \PY{n}{values\PYZus{}items}\PY{p}{,} \PY{n}{weight\PYZus{}items}\PY{p}{)}
+            \PY{n}{solution} \PY{o}{=} \PY{n}{local\PYZus{}search}\PY{p}{(}\PY{n}{solution}\PY{p}{,} \PY{n}{aux}\PY{p}{,} \PY{n}{value}\PY{p}{,} \PY{n}{weight\PYZus{}max}\PY{p}{)}			
+            \PY{k}{if} \PY{n}{solution} \PY{o}{\PYZgt{}} \PY{n}{best\PYZus{}solution}\PY{p}{:} 
+                \PY{n}{best\PYZus{}solution} \PY{o}{=} \PY{n}{solution}
+                \PY{n}{verify} \PY{o}{=} \PY{l+m+mi}{0}
+            \PY{k}{if} \PY{n}{solution} \PY{o}{!=} \PY{n}{best\PYZus{}solution}\PY{p}{:}
+                \PY{n}{verify} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+                \PY{k}{if} \PY{n}{verify} \PY{o}{==} \PY{n}{max\PYZus{}it}\PY{o}{*}\PY{l+m+mf}{0.1}\PY{p}{:} \PY{k}{return} \PY{n}{best\PYZus{}solution}
+        \PY{k}{return} \PY{n}{best\PYZus{}solution}
+    \end{Verbatim}
+    \end{tcolorbox}
+
 \newpage
 
-\section{Análise dos Resultados}
-Nesta seção serão comparados os resultados obtidos a partir da execução de cada algoritmo dada as instâncias propostas.
-
-\subsection{Comparando as Heurísticas Gulosas}
+\section{Avaliação Experimental}
 
 Como podemos ver na figura abaixo, existe uma grande discrepância entre os resultados obtidos para algumas instâncias.
 
-% \begin{table}[h]
-%     \centering
-%     \begin{tabular}{|r|c|c|c|}
-%         \toprule
-%         \textbf{Intâncias} &  \textbf{Decrescente} &  \textbf{Crescente} &  \textbf{Eficiente} \\
-%         \bottomrule
-%         input1.in  &        22911 &      14578 &      29636 \\ \hline
-%         input2.in  &         9893 &      19957 &      64939 \\ \hline
-%         input3.in  &        19893 &      38379 &     143449 \\ \hline
-%         input4.in  &        23630 &      21347 &      28840 \\ \hline
-%         input5.in  &        10844 &       5335 &      15785 \\ \hline
-%         input6.in  &        63881 &          6 &      99861 \\ \hline
-%         input7.in  &         1148 &        505 &       1894 \\ \hline
-%         input8.in  &          510 &        714 &        714 \\ \hline
-%         input9.in  &         9994 &       9717 &       9717 \\ \hline
-%         input10.in &        19994 &      17523 &      17523 \\ \hline
-%         input11.in &        29943 &      26212 &      29943 \\ \hline
-%         input12.in &        49884 &      49622 &      49884 \\ \hline
-%         input13.in &        49395 &      49262 &      49395 \\ \hline
-%         input14.in &        20880 &          0 &      20880 \\ \hline
-%         input15.in &        20676 &          0 &      20676 \\ \hline
-%         input16.in &        10503 &       2755 &      46218 \\ \hline
-%     \end{tabular}
-%     \caption{\textbf{Tabela 1.} Resultados}
-% \end{table}
-
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.7\textwidth]{../imgs/greedy_compare.pdf}
+    \includegraphics[width=1\linewidth]{../imgs/heuristics_compare.pdf}
     \caption{\textbf{Figura 1.} Comparação entre resultados das Heurísticas Gulosas.}
     \label{greedy_compare}
 \end{figure}
@@ -733,3 +773,90 @@ A correlacao nao consiste na porcentagem de acertar oou nao um resultado, e sim 
 \bibliographystyle{plain}
 
 \end{document}
+
+\begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+    \prompt{In}{incolor}{1}{\hspace{4pt}}
+    \begin{Verbatim}[commandchars=\\\{\}]
+    \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+    \PY{k+kn}{import} \PY{n+nn}{random}
+    
+    \PY{n}{random}\PY{o}{.}\PY{n}{seed}\PY{p}{(}\PY{l+m+mi}{42}\PY{p}{)}
+    
+    \PY{k}{def} \PY{n+nf}{semi\PYZus{}greedy\PYZus{}construction}\PY{p}{(}\PY{n}{window}\PY{p}{,} \PY{n}{number\PYZus{}items}\PY{p}{,} \PY{n}{weight\PYZus{}max}\PY{p}{,} \PY{n}{values\PYZus{}items}\PY{p}{,} \PY{n}{weight\PYZus{}items}\PY{p}{)}\PY{p}{:}
+        \PY{n}{efficiency} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{divide}\PY{p}{(}\PY{n}{values\PYZus{}items}\PY{p}{,} \PY{n}{weight\PYZus{}items}\PY{p}{)}
+        \PY{n}{items} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+        \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{number\PYZus{}items}\PY{p}{)}\PY{p}{:} 
+            \PY{n}{items}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{efficiency}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n}{values\PYZus{}items}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n}{weight\PYZus{}items}\PY{p}{[}\PY{n}{i}\PY{p}{]}
+        \PY{n}{items} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{items}\PY{o}{.}\PY{n}{values}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{reverse}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+    
+        \PY{n}{result\PYZus{}final} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+        \PY{n}{value} \PY{o}{=} \PY{l+m+mi}{0}
+        \PY{n}{weight} \PY{o}{=} \PY{l+m+mi}{0}
+    
+        \PY{n}{aux} \PY{o}{=} \PY{n}{items}\PY{p}{[}\PY{p}{:}\PY{p}{]}
+        \PY{k}{while} \PY{n+nb}{len}\PY{p}{(}\PY{n}{items}\PY{p}{)} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0} \PY{o+ow}{and} \PY{n}{weight} \PY{o}{\PYZlt{}} \PY{n}{weight\PYZus{}max}\PY{p}{:}
+            \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{items}\PY{p}{)} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{n}{window}\PY{p}{:} \PY{n}{tmp\PYZus{}window} \PY{o}{=} \PY{n}{window} 
+            \PY{k}{else}\PY{p}{:} \PY{n}{tmp\PYZus{}window} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{items}\PY{p}{)}
+            
+            \PY{n}{index} \PY{o}{=} \PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{tmp\PYZus{}window}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+            \PY{n}{value\PYZus{}item} \PY{o}{=} \PY{n}{items}\PY{p}{[}\PY{n}{index}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+            \PY{n}{weight\PYZus{}item} \PY{o}{=} \PY{n}{items}\PY{p}{[}\PY{n}{index}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+            
+            \PY{k}{if} \PY{n}{weight\PYZus{}item}\PY{o}{+}\PY{n}{weight} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{weight\PYZus{}max}\PY{p}{:} 
+                \PY{n}{result\PYZus{}final}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{items}\PY{o}{.}\PY{n}{pop}\PY{p}{(}\PY{n}{index}\PY{p}{)}\PY{p}{)}
+                \PY{n}{value} \PY{o}{+}\PY{o}{=} \PY{n}{value\PYZus{}item}
+                \PY{n}{weight} \PY{o}{+}\PY{o}{=} \PY{n}{weight\PYZus{}item}
+            \PY{k}{else}\PY{p}{:} \PY{n}{items}\PY{o}{.}\PY{n}{pop}\PY{p}{(}\PY{n}{index}\PY{p}{)}
+    
+        \PY{n}{solution} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{number\PYZus{}items}\PY{p}{,}\PY{n}{dtype}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{int16}\PY{p}{)}
+    
+        \PY{k}{for} \PY{n}{aux\PYZus{}value} \PY{o+ow}{in} \PY{n}{aux}\PY{p}{:}
+            \PY{k}{if} \PY{n}{aux\PYZus{}value} \PY{o+ow}{in} \PY{n}{result\PYZus{}final}\PY{p}{:} \PY{n}{solution}\PY{p}{[}\PY{n}{aux}\PY{o}{.}\PY{n}{index}\PY{p}{(}\PY{n}{aux\PYZus{}value}\PY{p}{)}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{1}
+        \PY{k}{return} \PY{n}{solution}\PY{p}{,} \PY{n}{aux}\PY{p}{,} \PY{n}{value}
+    
+    \PY{k}{def} \PY{n+nf}{local\PYZus{}search}\PY{p}{(}\PY{n}{solution}\PY{p}{,} \PY{n}{aux}\PY{p}{,} \PY{n}{value}\PY{p}{,} \PY{n}{weight\PYZus{}max}\PY{p}{)}\PY{p}{:}
+        \PY{n}{all\PYZus{}solutions} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+        \PY{n}{solution\PYZus{}aux} \PY{o}{=} \PY{n}{solution}\PY{p}{[}\PY{p}{:}\PY{p}{]}
+        \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{solution}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+            \PY{k}{if} \PY{n}{solution}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{:} \PY{n}{solution}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{0}
+            \PY{k}{elif} \PY{n}{solution}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:} \PY{n}{solution}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{1}
+            \PY{n}{all\PYZus{}solutions}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{solution}\PY{p}{[}\PY{p}{:}\PY{p}{]}\PY{p}{)}
+            \PY{n}{solution}\PY{p}{[}\PY{p}{:}\PY{p}{]} \PY{o}{=} \PY{n}{solution\PYZus{}aux}		
+    
+        \PY{n}{new\PYZus{}solution} \PY{o}{=} \PY{n}{solution\PYZus{}aux}\PY{p}{[}\PY{p}{:}\PY{p}{]}
+        \PY{k}{for} \PY{n}{solution} \PY{o+ow}{in} \PY{n}{all\PYZus{}solutions}\PY{p}{:}
+            \PY{n}{new\PYZus{}value} \PY{o}{=} \PY{l+m+mi}{0}
+            \PY{n}{new\PYZus{}weight} \PY{o}{=} \PY{l+m+mi}{0}		
+            \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{solution}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                \PY{k}{if} \PY{n}{solution}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{:}
+                    \PY{n}{new\PYZus{}value} \PY{o}{+}\PY{o}{=} \PY{n}{aux}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+                    \PY{n}{new\PYZus{}weight} \PY{o}{+}\PY{o}{=} \PY{n}{aux}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+            \PY{k}{if} \PY{n}{new\PYZus{}weight} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{weight\PYZus{}max} \PY{o+ow}{and} \PY{n}{new\PYZus{}value} \PY{o}{\PYZgt{}} \PY{n}{value}\PY{p}{:}
+                \PY{n}{new\PYZus{}solution} \PY{o}{=} \PY{n}{solution}\PY{p}{[}\PY{p}{:}\PY{p}{]}
+                \PY{n}{value} \PY{o}{=} \PY{n}{new\PYZus{}value}
+        \PY{k}{if} \PY{n}{new\PYZus{}solution}\PY{o}{.}\PY{n}{all}\PY{p}{(}\PY{p}{)} \PY{o}{==} \PY{n}{solution\PYZus{}aux}\PY{o}{.}\PY{n}{all}\PY{p}{(}\PY{p}{)}\PY{p}{:} 
+            \PY{k}{return} \PY{n}{value}
+        \PY{k}{return} \PY{n}{local\PYZus{}search}\PY{p}{(}\PY{n}{solution}\PY{p}{,} \PY{n}{aux}\PY{p}{,} \PY{n}{value}\PY{p}{,} \PY{n}{weight\PYZus{}max}\PY{p}{)}
+    
+    \PY{k}{def} \PY{n+nf}{grasp}\PY{p}{(}\PY{n}{max\PYZus{}it}\PY{p}{,} \PY{n}{window}\PY{p}{,} \PY{n}{number\PYZus{}items}\PY{p}{,} \PY{n}{weight\PYZus{}max}\PY{p}{,} \PY{n}{values\PYZus{}items}\PY{p}{,} \PY{n}{weight\PYZus{}items}\PY{p}{)}\PY{p}{:}
+        \PY{n}{best\PYZus{}solution} \PY{o}{=} \PY{l+m+mi}{0}
+        \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{max\PYZus{}it}\PY{p}{)}\PY{p}{:}
+            \PY{n}{solution}\PY{p}{,} \PY{n}{aux}\PY{p}{,} \PY{n}{value} \PY{o}{=} \PY{n}{semi\PYZus{}greedy\PYZus{}construction}\PY{p}{(}\PY{n}{window}\PY{p}{,} \PY{n}{number\PYZus{}items}\PY{p}{,} \PY{n}{weight\PYZus{}max}\PY{p}{,} \PY{n}{values\PYZus{}items}\PY{p}{,} \PY{n}{weight\PYZus{}items}\PY{p}{)}
+            \PY{n}{solution} \PY{o}{=} \PY{n}{local\PYZus{}search}\PY{p}{(}\PY{n}{solution}\PY{p}{,} \PY{n}{aux}\PY{p}{,} \PY{n}{value}\PY{p}{,} \PY{n}{weight\PYZus{}max}\PY{p}{)}			
+            \PY{k}{if} \PY{n}{solution} \PY{o}{\PYZgt{}} \PY{n}{best\PYZus{}solution}\PY{p}{:} 
+                \PY{n}{best\PYZus{}solution} \PY{o}{=} \PY{n}{solution}
+                \PY{n}{verify} \PY{o}{=} \PY{l+m+mi}{0}
+            \PY{k}{if} \PY{n}{solution} \PY{o}{!=} \PY{n}{best\PYZus{}solution}\PY{p}{:}
+                \PY{n}{verify} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+                \PY{k}{if} \PY{n}{verify} \PY{o}{==} \PY{n}{max\PYZus{}it}\PY{o}{*}\PY{l+m+mf}{0.1}\PY{p}{:} \PY{k}{return} \PY{n}{best\PYZus{}solution}
+        \PY{k}{return} \PY{n}{best\PYZus{}solution}
+    \end{Verbatim}
+    \end{tcolorbox}
+    
+
+
+
+    
+
+    
+    
