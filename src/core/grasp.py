@@ -99,6 +99,9 @@ def get_instances(directory):
 	return sorted(os.listdir(os.path.join('..',directory)), key=lambda k:int(k.strip('input.in')))
 
 def get_data(directory):	
+
+	grasp_results = {}
+
 	for input_file in get_instances(directory): 
 		with open(os.path.join('..',directory,input_file)) as file: 
 			state = 0
@@ -116,11 +119,9 @@ def get_data(directory):
 					if item_id == number_items: state = 2
 				elif state == 2:
 					weight_max = int(inst[0])
-	return number_items, weight_max, values_items, weight_items		
+		start = time()
+		grasp_results[input_file] = [grasp(100, 2, number_items, weight_max, values_items, weight_items), time() - start]
+	return grasp_results	
 
 if __name__ == "__main__":	
-	number_items, weight_max, values_items, weight_items = get_data('../inputs')
-
-	start = time()
-	print(grasp(100, 2, number_items, weight_max, values_items, weight_items))
-	print (time() - start)	
+	print(*get_data('../inputs').items(), sep='\n')
