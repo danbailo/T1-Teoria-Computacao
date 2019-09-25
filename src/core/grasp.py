@@ -31,68 +31,108 @@ def semi_greedy_construction(window, number_items, weight_max, values_items, wei
 		if item in result_final: solution[values_items.index(item)] = 1
 	return solution, value
 
+# def local_search(solution, values_items,weight_items, value, weight_max):
+# 	all_solutions = []
+# 	temp = solution[:]
+
+# 	for i in range(len(solution)):
+# 		if solution[i] == 1: 
+# 			solution[i] = 0
+# 			for k in range(len(solution)):
+# 				print(solution[k], end=' ')
+# 			solution[i] = 1
+# 		elif solution[i] == 0: 
+# 			solution[i] = 1
+# 			for k in range(len(solution)): temp[k] = solution[k]
+# 			solution[i] = 0
+# 	print(temp, sep='\n')
+# 	exit()
+# 		# all_solutions.append(temp)
+
+# 	for solution in all_solutions:
+# 		print(solution)
+# 		new_value = 0
+# 		new_weight = 0		
+# 		for j in range(len(solution)):
+# 			if solution[j] == 1:
+# 				new_value += values_items[j]
+# 				new_weight += weight_items[j]
+# 		if new_weight <= weight_max and new_value > value:
+# 			new_solution = solution[:]
+# 			value = new_value
+# 	if new_solution.all() == solution_aux.all(): return value
+# 	return local_search(solution, values_items,weight_items, value, weight_max)
+
+#SE A BUSCA LOCAL NAO ACHAR NENHUM VIZINHO MELHOR, A SOLUCAO VAI
+#ATUALIZAR POR CAUSA DAS ITERACOES DO GRASP?
 def local_search(solution, values_items,weight_items, value, weight_max):
-	solution_aux = solution[:]
 	temp = np.zeros(len(solution), dtype=np.int16)
-	for i in range(len(solution)):
+	length = len(solution)
+	print(f'value original {value}')
+	print('-'*50)
+
+	for i in range(length):
 		new_weight = 0
 		new_value = 0
-		if solution_aux[i] == 1: 
-			solution_aux[i] = 0
-			for j in range(len(solution_aux)):
-				if solution_aux[j] == 1:
+		if solution[i] == 1: 
+			solution[i] = 0
+			for j in range(length):
+				if solution[j] == 1:
 					new_value += values_items[j]
 					new_weight += weight_items[j]
-					for k in range(len(solution_aux)): temp[k] = solution_aux[k]
-					# temp = solution_aux[:]
-			solution_aux[i] = 1
-		elif solution_aux[i] == 0: 
-			solution_aux[i] = 1
-			for j in range(len(solution_aux)):
-				if solution_aux[j] == 1:
+					for k in range(length): temp[k] = solution[k]
+			solution[i] = 1
+		elif solution[i] == 0: 
+			solution[i] = 1
+			for j in range(length):
+				if solution[j] == 1:
 					new_value += values_items[j]
 					new_weight += weight_items[j]
-					for k in range(len(solution_aux)): temp[k] = solution_aux[k]			
-			solution_aux[i] = 0
-		
-		# print(temp)	
-		# print(new_value)
-		# print(new_weight)
+					for k in range(length): temp[k] = solution[k]			
+			solution[i] = 0
 		if new_value > value and new_weight <= weight_max:
+			print(f'new value: {new_value}')
+			print(f'new weight: {new_weight}\n')
+			print('entrei')
 			value = new_value
+			solution = temp[:]
 	return value
-	
-		
 
-
-	# print(*all_solutions, sep='\n')
-	# exit(0)
-
-	# new_solution = solution_aux[:]
-	# for solution in all_solutions:
-	# 	new_value = 0
-	# 	new_weight = 0		
-	# 	for j in range(len(solution)):
-	# 		if solution[j] == 1:
-	# 			new_value += aux[j][1]
-	# 			new_weight += aux[j][2]
-	# 	if new_weight <= weight_max and new_value > value:
-	# 		new_solution = solution[:]
-	# 		value = new_value
-	# if new_solution.all() == solution_aux.all(): return value
-	# return local_search(solution, aux, value, weight_max)
+def local_searcha(solution, values_items, weight_items, value, weight_max):
+	all_solutions = []
+	solution_aux = solution.copy()
+	for i in range(len(solution)):
+		if solution[i] == 1: solution_aux[i] = 0
+		elif solution[i] == 0: solution_aux[i] = 1
+		all_solutions.append(solution_aux)
+		solution_aux = solution.copy()
+	print(*all_solutions, sep='\n')
+	exit()
+	new_solution = solution_aux[:]
+	for solution in all_solutions:
+		new_value = 0
+		new_weight = 0		
+		for j in range(len(solution)):
+			if solution[j] == 1:
+				new_value += values_items[j]
+				new_weight += weight_items[j]
+		if new_weight <= weight_max and new_value > value:
+			new_solution = solution[:]
+			value = new_value
+	if new_solution.all() == solution_aux.all(): return value
+	return local_search(solution, aux, value, weight_max)	
 
 def grasp(max_it, window, number_items, weight_max, values_items, weight_items):
 	best_solution = 0
 	for i in range(max_it):
 		solution, value = semi_greedy_construction(window, number_items, weight_max, values_items, weight_items)
-		solution = local_search(solution, values_items, weight_items, value, weight_max)			
+		solution = local_searcha(solution, values_items, weight_items, value, weight_max)			
 		if solution > best_solution: 
 			best_solution = solution
-			verify = 0
-		if solution != best_solution:
-			verify += 1
-			if verify == max_it*0.1: return best_solution
+		# 	verify = 0
+		# if solution != best_solution:
+		# 	verify += 1
+		# 	if verify == max_it*0.1: return best_solution
 	return best_solution
 
 def get_instances(directory):
@@ -120,7 +160,7 @@ def get_data(directory):
 				elif state == 2:
 					weight_max = int(inst[0])
 		start = time()
-		grasp_results[input_file] = [grasp(100, 2, number_items, weight_max, values_items, weight_items), time() - start]
+		grasp_results[input_file] = [grasp(1, 2, number_items, weight_max, values_items, weight_items), time() - start]
 	return grasp_results	
 
 if __name__ == "__main__":	
