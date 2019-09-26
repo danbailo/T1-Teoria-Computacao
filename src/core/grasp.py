@@ -37,12 +37,11 @@ def local_search(solution, values_items, weight_items, value, weight, weight_max
 		new_weight = 0
 		new_value = 0
 		if solution[i] == 0: 
-			if solution[i] == 1:
-				if weight+weight_items[i] <= weight_max:
-					if value+values_items[i] > neighbor[1]:
-						temp = solution.copy()
-						temp[i] = 1
-						neighbor = temp, weight+weight_items[i], value+values_items[i]
+			if weight+weight_items[i] <= weight_max:
+				if value+values_items[i] > neighbor[1]:
+					temp = solution.copy()
+					temp[i] = 1
+					neighbor = temp, weight+weight_items[i], value+values_items[i]
 	if value == neighbor[1] :return value
 	return local_search(neighbor[0], values_items, weight_items, neighbor[1], neighbor[2], weight_max)
 

@@ -1,44 +1,674 @@
 {
     "input1.in": {
-        "MAX_IT-10": {
-            "Window: = 2": 29813,
-            "Window: = 3": 29636,
-            "Window: = 4": 29391,
-            "Window: = 5": 29813,
-            "Window: = 6": 27005,
-            "Window: = 7": 29420,
-            "Window: = 8": 31621,
-            "Window: = 9": 29813
+        "Máx Iterações - 10": {
+            "Janela - 2": 29813,
+            "Janela - 3": 29636,
+            "Janela - 4": 29391,
+            "Janela - 5": 29813,
+            "Janela - 6": 27005,
+            "Janela - 7": 29420,
+            "Janela - 8": 31621,
+            "Janela - 9": 29813
         },
-        "MAX_IT-100": {
-            "Window: = 2": 31621,
-            "Window: = 3": 31621,
-            "Window: = 4": 31621,
-            "Window: = 5": 30548,
-            "Window: = 6": 31621,
-            "Window: = 7": 31621,
-            "Window: = 8": 29391,
-            "Window: = 9": 31621
+        "Máx Iterações - 100": {
+            "Janela - 2": 31621,
+            "Janela - 3": 31621,
+            "Janela - 4": 31621,
+            "Janela - 5": 30548,
+            "Janela - 6": 31621,
+            "Janela - 7": 31621,
+            "Janela - 8": 29391,
+            "Janela - 9": 31621
         },
-        "MAX_IT-1000": {
-            "Window: = 2": 31621,
-            "Window: = 3": 31621,
-            "Window: = 4": 31621,
-            "Window: = 5": 31621,
-            "Window: = 6": 31621,
-            "Window: = 7": 31621,
-            "Window: = 8": 31621,
-            "Window: = 9": 31621
+        "Máx Iterações - 1000": {
+            "Janela - 2": 31621,
+            "Janela - 3": 31621,
+            "Janela - 4": 31621,
+            "Janela - 5": 31621,
+            "Janela - 6": 31621,
+            "Janela - 7": 31621,
+            "Janela - 8": 31621,
+            "Janela - 9": 31621
         },
-        "MAX_IT-10000": {
-            "Window: = 2": 31621,
-            "Window: = 3": 31621,
-            "Window: = 4": 31621,
-            "Window: = 5": 31621,
-            "Window: = 6": 31621,
-            "Window: = 7": 31621,
-            "Window: = 8": 31621,
-            "Window: = 9": 31621
+        "Máx Iterações - 10000": {
+            "Janela - 2": 31621,
+            "Janela - 3": 31621,
+            "Janela - 4": 31621,
+            "Janela - 5": 31621,
+            "Janela - 6": 31621,
+            "Janela - 7": 31621,
+            "Janela - 8": 31621,
+            "Janela - 9": 31621
+        }
+    },
+    "input2.in": {
+        "Máx Iterações - 10": {
+            "Janela - 2": 67829,
+            "Janela - 3": 65131,
+            "Janela - 4": 67829,
+            "Janela - 5": 67829,
+            "Janela - 6": 67162,
+            "Janela - 7": 66136,
+            "Janela - 8": 64593,
+            "Janela - 9": 64351
+        },
+        "Máx Iterações - 100": {
+            "Janela - 2": 67829,
+            "Janela - 3": 67829,
+            "Janela - 4": 67829,
+            "Janela - 5": 67829,
+            "Janela - 6": 67829,
+            "Janela - 7": 67829,
+            "Janela - 8": 66136,
+            "Janela - 9": 65131
+        },
+        "Máx Iterações - 1000": {
+            "Janela - 2": 67829,
+            "Janela - 3": 67829,
+            "Janela - 4": 67829,
+            "Janela - 5": 67829,
+            "Janela - 6": 67829,
+            "Janela - 7": 67829,
+            "Janela - 8": 67829,
+            "Janela - 9": 67829
+        },
+        "Máx Iterações - 10000": {
+            "Janela - 2": 67829,
+            "Janela - 3": 67829,
+            "Janela - 4": 67829,
+            "Janela - 5": 67829,
+            "Janela - 6": 67829,
+            "Janela - 7": 67829,
+            "Janela - 8": 67829,
+            "Janela - 9": 67829
+        }
+    },
+    "input3.in": {
+        "Máx Iterações - 10": {
+            "Janela - 2": 143449,
+            "Janela - 3": 143449,
+            "Janela - 4": 143449,
+            "Janela - 5": 143449,
+            "Janela - 6": 138507,
+            "Janela - 7": 130364,
+            "Janela - 8": 143449,
+            "Janela - 9": 143449
+        },
+        "Máx Iterações - 100": {
+            "Janela - 2": 143449,
+            "Janela - 3": 143449,
+            "Janela - 4": 143449,
+            "Janela - 5": 143449,
+            "Janela - 6": 143449,
+            "Janela - 7": 143449,
+            "Janela - 8": 143449,
+            "Janela - 9": 143449
+        },
+        "Máx Iterações - 1000": {
+            "Janela - 2": 143449,
+            "Janela - 3": 143449,
+            "Janela - 4": 143449,
+            "Janela - 5": 143449,
+            "Janela - 6": 143449,
+            "Janela - 7": 143449,
+            "Janela - 8": 143449,
+            "Janela - 9": 143449
+        },
+        "Máx Iterações - 10000": {
+            "Janela - 2": 143449,
+            "Janela - 3": 143449,
+            "Janela - 4": 143449,
+            "Janela - 5": 143449,
+            "Janela - 6": 143449,
+            "Janela - 7": 143449,
+            "Janela - 8": 143449,
+            "Janela - 9": 143449
+        }
+    },
+    "input4.in": {
+        "Máx Iterações - 10": {
+            "Janela - 2": 28840,
+            "Janela - 3": 28840,
+            "Janela - 4": 27453,
+            "Janela - 5": 28670,
+            "Janela - 6": 28840,
+            "Janela - 7": 19653,
+            "Janela - 8": 19887,
+            "Janela - 9": 28446
+        },
+        "Máx Iterações - 100": {
+            "Janela - 2": 28840,
+            "Janela - 3": 28840,
+            "Janela - 4": 28840,
+            "Janela - 5": 28840,
+            "Janela - 6": 28840,
+            "Janela - 7": 28840,
+            "Janela - 8": 28840,
+            "Janela - 9": 28840
+        },
+        "Máx Iterações - 1000": {
+            "Janela - 2": 28840,
+            "Janela - 3": 28840,
+            "Janela - 4": 28840,
+            "Janela - 5": 28840,
+            "Janela - 6": 28840,
+            "Janela - 7": 28840,
+            "Janela - 8": 28840,
+            "Janela - 9": 28840
+        },
+        "Máx Iterações - 10000": {
+            "Janela - 2": 28840,
+            "Janela - 3": 28840,
+            "Janela - 4": 28840,
+            "Janela - 5": 28840,
+            "Janela - 6": 28840,
+            "Janela - 7": 28840,
+            "Janela - 8": 28840,
+            "Janela - 9": 28840
+        }
+    },
+    "input5.in": {
+        "Máx Iterações - 10": {
+            "Janela - 2": 15785,
+            "Janela - 3": 15785,
+            "Janela - 4": 15785,
+            "Janela - 5": 15785,
+            "Janela - 6": 15785,
+            "Janela - 7": 15785,
+            "Janela - 8": 14912,
+            "Janela - 9": 14936
+        },
+        "Máx Iterações - 100": {
+            "Janela - 2": 15785,
+            "Janela - 3": 15785,
+            "Janela - 4": 15785,
+            "Janela - 5": 15785,
+            "Janela - 6": 15785,
+            "Janela - 7": 15785,
+            "Janela - 8": 15785,
+            "Janela - 9": 15785
+        },
+        "Máx Iterações - 1000": {
+            "Janela - 2": 15785,
+            "Janela - 3": 15785,
+            "Janela - 4": 15785,
+            "Janela - 5": 15785,
+            "Janela - 6": 15785,
+            "Janela - 7": 15785,
+            "Janela - 8": 15785,
+            "Janela - 9": 15785
+        },
+        "Máx Iterações - 10000": {
+            "Janela - 2": 15785,
+            "Janela - 3": 15785,
+            "Janela - 4": 15785,
+            "Janela - 5": 15785,
+            "Janela - 6": 15785,
+            "Janela - 7": 15785,
+            "Janela - 8": 15785,
+            "Janela - 9": 15785
+        }
+    },
+    "input6.in": {
+        "Máx Iterações - 10": {
+            "Janela - 2": 99861,
+            "Janela - 3": 99861,
+            "Janela - 4": 99861,
+            "Janela - 5": 99861,
+            "Janela - 6": 99861,
+            "Janela - 7": 49562,
+            "Janela - 8": 92035,
+            "Janela - 9": 95717
+        },
+        "Máx Iterações - 100": {
+            "Janela - 2": 99861,
+            "Janela - 3": 99861,
+            "Janela - 4": 99861,
+            "Janela - 5": 99861,
+            "Janela - 6": 99861,
+            "Janela - 7": 99861,
+            "Janela - 8": 99861,
+            "Janela - 9": 99861
+        },
+        "Máx Iterações - 1000": {
+            "Janela - 2": 99861,
+            "Janela - 3": 99861,
+            "Janela - 4": 99861,
+            "Janela - 5": 99861,
+            "Janela - 6": 99861,
+            "Janela - 7": 99861,
+            "Janela - 8": 99861,
+            "Janela - 9": 99861
+        },
+        "Máx Iterações - 10000": {
+            "Janela - 2": 99861,
+            "Janela - 3": 99861,
+            "Janela - 4": 99861,
+            "Janela - 5": 99861,
+            "Janela - 6": 99861,
+            "Janela - 7": 99861,
+            "Janela - 8": 99861,
+            "Janela - 9": 99861
+        }
+    },
+    "input7.in": {
+        "Máx Iterações - 10": {
+            "Janela - 2": 1922,
+            "Janela - 3": 1903,
+            "Janela - 4": 1922,
+            "Janela - 5": 1903,
+            "Janela - 6": 1890,
+            "Janela - 7": 1903,
+            "Janela - 8": 1883,
+            "Janela - 9": 1891
+        },
+        "Máx Iterações - 100": {
+            "Janela - 2": 1922,
+            "Janela - 3": 1940,
+            "Janela - 4": 1940,
+            "Janela - 5": 1940,
+            "Janela - 6": 1913,
+            "Janela - 7": 1894,
+            "Janela - 8": 1921,
+            "Janela - 9": 1925
+        },
+        "Máx Iterações - 1000": {
+            "Janela - 2": 1922,
+            "Janela - 3": 1940,
+            "Janela - 4": 1940,
+            "Janela - 5": 1940,
+            "Janela - 6": 1940,
+            "Janela - 7": 1940,
+            "Janela - 8": 1940,
+            "Janela - 9": 1925
+        },
+        "Máx Iterações - 10000": {
+            "Janela - 2": 1922,
+            "Janela - 3": 1940,
+            "Janela - 4": 1940,
+            "Janela - 5": 1940,
+            "Janela - 6": 1940,
+            "Janela - 7": 1940,
+            "Janela - 8": 1940,
+            "Janela - 9": 1940
+        }
+    },
+    "input8.in": {
+        "Máx Iterações - 10": {
+            "Janela - 2": 489,
+            "Janela - 3": 490,
+            "Janela - 4": 497,
+            "Janela - 5": 490,
+            "Janela - 6": 741,
+            "Janela - 7": 495,
+            "Janela - 8": 733,
+            "Janela - 9": 739
+        },
+        "Máx Iterações - 100": {
+            "Janela - 2": 491,
+            "Janela - 3": 495,
+            "Janela - 4": 736,
+            "Janela - 5": 741,
+            "Janela - 6": 739,
+            "Janela - 7": 741,
+            "Janela - 8": 741,
+            "Janela - 9": 741
+        },
+        "Máx Iterações - 1000": {
+            "Janela - 2": 492,
+            "Janela - 3": 738,
+            "Janela - 4": 741,
+            "Janela - 5": 741,
+            "Janela - 6": 741,
+            "Janela - 7": 741,
+            "Janela - 8": 741,
+            "Janela - 9": 741
+        },
+        "Máx Iterações - 10000": {
+            "Janela - 2": 496,
+            "Janela - 3": 737,
+            "Janela - 4": 741,
+            "Janela - 5": 741,
+            "Janela - 6": 741,
+            "Janela - 7": 741,
+            "Janela - 8": 741,
+            "Janela - 9": 741
+        }
+    },
+    "input9.in": {
+        "Máx Iterações - 10": {
+            "Janela - 2": 9627,
+            "Janela - 3": 9673,
+            "Janela - 4": 9689,
+            "Janela - 5": 9918,
+            "Janela - 6": 9937,
+            "Janela - 7": 10171,
+            "Janela - 8": 9880,
+            "Janela - 9": 9986
+        },
+        "Máx Iterações - 100": {
+            "Janela - 2": 9680,
+            "Janela - 3": 9679,
+            "Janela - 4": 9891,
+            "Janela - 5": 10215,
+            "Janela - 6": 10265,
+            "Janela - 7": 10257,
+            "Janela - 8": 10265,
+            "Janela - 9": 10276
+        },
+        "Máx Iterações - 1000": {
+            "Janela - 2": 9753,
+            "Janela - 3": 9756,
+            "Janela - 4": 10265,
+            "Janela - 5": 10279,
+            "Janela - 6": 10266,
+            "Janela - 7": 10278,
+            "Janela - 8": 10280,
+            "Janela - 9": 10280
+        },
+        "Máx Iterações - 10000": {
+            "Janela - 2": 9893,
+            "Janela - 3": 10096,
+            "Janela - 4": 10273,
+            "Janela - 5": 10279,
+            "Janela - 6": 10280,
+            "Janela - 7": 10281,
+            "Janela - 8": 10281,
+            "Janela - 9": 10281
+        }
+    },
+    "input10.in": {
+        "Máx Iterações - 10": {
+            "Janela - 2": 18574,
+            "Janela - 3": 19883,
+            "Janela - 4": 20085,
+            "Janela - 5": 19057,
+            "Janela - 6": 20077,
+            "Janela - 7": 19815,
+            "Janela - 8": 19977,
+            "Janela - 9": 20039
+        },
+        "Máx Iterações - 100": {
+            "Janela - 2": 19368,
+            "Janela - 3": 19639,
+            "Janela - 4": 20046,
+            "Janela - 5": 20020,
+            "Janela - 6": 20097,
+            "Janela - 7": 20032,
+            "Janela - 8": 20149,
+            "Janela - 9": 20125
+        },
+        "Máx Iterações - 1000": {
+            "Janela - 2": 19368,
+            "Janela - 3": 20046,
+            "Janela - 4": 20125,
+            "Janela - 5": 20136,
+            "Janela - 6": 20131,
+            "Janela - 7": 20149,
+            "Janela - 8": 20149,
+            "Janela - 9": 20128
+        },
+        "Máx Iterações - 10000": {
+            "Janela - 2": 19368,
+            "Janela - 3": 20095,
+            "Janela - 4": 20149,
+            "Janela - 5": 20149,
+            "Janela - 6": 20149,
+            "Janela - 7": 20149,
+            "Janela - 8": 20149,
+            "Janela - 9": 20149
+        }
+    },
+    "input11.in": {
+        "Máx Iterações - 10": {
+            "Janela - 2": 29965,
+            "Janela - 3": 29972,
+            "Janela - 4": 29972,
+            "Janela - 5": 29965,
+            "Janela - 6": 29990,
+            "Janela - 7": 29972,
+            "Janela - 8": 29976,
+            "Janela - 9": 29873
+        },
+        "Máx Iterações - 100": {
+            "Janela - 2": 29965,
+            "Janela - 3": 29972,
+            "Janela - 4": 29990,
+            "Janela - 5": 29990,
+            "Janela - 6": 29990,
+            "Janela - 7": 29990,
+            "Janela - 8": 29972,
+            "Janela - 9": 29998
+        },
+        "Máx Iterações - 1000": {
+            "Janela - 2": 29965,
+            "Janela - 3": 29972,
+            "Janela - 4": 29990,
+            "Janela - 5": 29990,
+            "Janela - 6": 29990,
+            "Janela - 7": 29990,
+            "Janela - 8": 29998,
+            "Janela - 9": 30000
+        },
+        "Máx Iterações - 10000": {
+            "Janela - 2": 29965,
+            "Janela - 3": 29972,
+            "Janela - 4": 29990,
+            "Janela - 5": 29990,
+            "Janela - 6": 29990,
+            "Janela - 7": 30000,
+            "Janela - 8": 30000,
+            "Janela - 9": 30000
+        }
+    },
+    "input12.in": {
+        "Máx Iterações - 10": {
+            "Janela - 2": 49885,
+            "Janela - 3": 49885,
+            "Janela - 4": 49885,
+            "Janela - 5": 49885,
+            "Janela - 6": 49885,
+            "Janela - 7": 49885,
+            "Janela - 8": 49884,
+            "Janela - 9": 49885
+        },
+        "Máx Iterações - 100": {
+            "Janela - 2": 49885,
+            "Janela - 3": 49885,
+            "Janela - 4": 49885,
+            "Janela - 5": 49885,
+            "Janela - 6": 49885,
+            "Janela - 7": 49885,
+            "Janela - 8": 49885,
+            "Janela - 9": 49885
+        },
+        "Máx Iterações - 1000": {
+            "Janela - 2": 49885,
+            "Janela - 3": 49885,
+            "Janela - 4": 49885,
+            "Janela - 5": 49885,
+            "Janela - 6": 49885,
+            "Janela - 7": 49885,
+            "Janela - 8": 49885,
+            "Janela - 9": 49885
+        },
+        "Máx Iterações - 10000": {
+            "Janela - 2": 49885,
+            "Janela - 3": 49885,
+            "Janela - 4": 49885,
+            "Janela - 5": 49885,
+            "Janela - 6": 49885,
+            "Janela - 7": 49885,
+            "Janela - 8": 49885,
+            "Janela - 9": 49885
+        }
+    },
+    "input13.in": {
+        "Máx Iterações - 10": {
+            "Janela - 2": 49398,
+            "Janela - 3": 49397,
+            "Janela - 4": 49397,
+            "Janela - 5": 49393,
+            "Janela - 6": 49398,
+            "Janela - 7": 49398,
+            "Janela - 8": 49397,
+            "Janela - 9": 49398
+        },
+        "Máx Iterações - 100": {
+            "Janela - 2": 49398,
+            "Janela - 3": 49398,
+            "Janela - 4": 49398,
+            "Janela - 5": 49398,
+            "Janela - 6": 49398,
+            "Janela - 7": 49398,
+            "Janela - 8": 49398,
+            "Janela - 9": 49398
+        },
+        "Máx Iterações - 1000": {
+            "Janela - 2": 49398,
+            "Janela - 3": 49398,
+            "Janela - 4": 49398,
+            "Janela - 5": 49398,
+            "Janela - 6": 49398,
+            "Janela - 7": 49398,
+            "Janela - 8": 49398,
+            "Janela - 9": 49398
+        },
+        "Máx Iterações - 10000": {
+            "Janela - 2": 49398,
+            "Janela - 3": 49398,
+            "Janela - 4": 49398,
+            "Janela - 5": 49398,
+            "Janela - 6": 49398,
+            "Janela - 7": 49398,
+            "Janela - 8": 49398,
+            "Janela - 9": 49398
+        }
+    },
+    "input14.in": {
+        "Máx Iterações - 10": {
+            "Janela - 2": 20880,
+            "Janela - 3": 20880,
+            "Janela - 4": 20880,
+            "Janela - 5": 20880,
+            "Janela - 6": 20732,
+            "Janela - 7": 20820,
+            "Janela - 8": 396,
+            "Janela - 9": 20820
+        },
+        "Máx Iterações - 100": {
+            "Janela - 2": 20880,
+            "Janela - 3": 20880,
+            "Janela - 4": 20880,
+            "Janela - 5": 20880,
+            "Janela - 6": 20880,
+            "Janela - 7": 20880,
+            "Janela - 8": 20880,
+            "Janela - 9": 20880
+        },
+        "Máx Iterações - 1000": {
+            "Janela - 2": 20880,
+            "Janela - 3": 20880,
+            "Janela - 4": 20880,
+            "Janela - 5": 20880,
+            "Janela - 6": 20880,
+            "Janela - 7": 20880,
+            "Janela - 8": 20880,
+            "Janela - 9": 20880
+        },
+        "Máx Iterações - 10000": {
+            "Janela - 2": 20880,
+            "Janela - 3": 20880,
+            "Janela - 4": 20880,
+            "Janela - 5": 20880,
+            "Janela - 6": 20880,
+            "Janela - 7": 20880,
+            "Janela - 8": 20880,
+            "Janela - 9": 20880
+        }
+    },
+    "input15.in": {
+        "Máx Iterações - 10": {
+            "Janela - 2": 20676,
+            "Janela - 3": 20536,
+            "Janela - 4": 20676,
+            "Janela - 5": 396,
+            "Janela - 6": 148,
+            "Janela - 7": 200,
+            "Janela - 8": 20676,
+            "Janela - 9": 20536
+        },
+        "Máx Iterações - 100": {
+            "Janela - 2": 20676,
+            "Janela - 3": 20676,
+            "Janela - 4": 20676,
+            "Janela - 5": 20676,
+            "Janela - 6": 20676,
+            "Janela - 7": 20676,
+            "Janela - 8": 20676,
+            "Janela - 9": 20536
+        },
+        "Máx Iterações - 1000": {
+            "Janela - 2": 20676,
+            "Janela - 3": 20676,
+            "Janela - 4": 20676,
+            "Janela - 5": 20676,
+            "Janela - 6": 20676,
+            "Janela - 7": 20676,
+            "Janela - 8": 20676,
+            "Janela - 9": 20676
+        },
+        "Máx Iterações - 10000": {
+            "Janela - 2": 20676,
+            "Janela - 3": 20676,
+            "Janela - 4": 20676,
+            "Janela - 5": 20676,
+            "Janela - 6": 20676,
+            "Janela - 7": 20676,
+            "Janela - 8": 20676,
+            "Janela - 9": 20676
+        }
+    },
+    "input16.in": {
+        "Máx Iterações - 10": {
+            "Janela - 2": 1990,
+            "Janela - 3": 1997,
+            "Janela - 4": 2001,
+            "Janela - 5": 1998,
+            "Janela - 6": 1996,
+            "Janela - 7": 1994,
+            "Janela - 8": 2001,
+            "Janela - 9": 1999
+        },
+        "Máx Iterações - 100": {
+            "Janela - 2": 2001,
+            "Janela - 3": 45956,
+            "Janela - 4": 46044,
+            "Janela - 5": 45927,
+            "Janela - 6": 46084,
+            "Janela - 7": 2001,
+            "Janela - 8": 45888,
+            "Janela - 9": 2001
+        },
+        "Máx Iterações - 1000": {
+            "Janela - 2": 1997,
+            "Janela - 3": 45927,
+            "Janela - 4": 46084,
+            "Janela - 5": 46118,
+            "Janela - 6": 46084,
+            "Janela - 7": 46084,
+            "Janela - 8": 46118,
+            "Janela - 9": 46057
+        },
+        "Máx Iterações - 10000": {
+            "Janela - 2": 45927,
+            "Janela - 3": 46044,
+            "Janela - 4": 46118,
+            "Janela - 5": 46118,
+            "Janela - 6": 46118,
+            "Janela - 7": 46118,
+            "Janela - 8": 46118,
+            "Janela - 9": 46084
         }
     }
 }
