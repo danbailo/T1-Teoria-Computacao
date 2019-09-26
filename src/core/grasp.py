@@ -50,10 +50,5 @@ def grasp(max_it, window, number_items, weight_max, values_items, weight_items):
 	for i in range(max_it):
 		solution, value, weight = semi_greedy_construction(window, number_items, weight_max, values_items, weight_items)
 		solution = local_search(solution, values_items, weight_items, value, weight, weight_max)			
-		if solution > best_solution: 
-			best_solution = solution
-			verify = 0
-		if solution != best_solution:
-			verify += 1
-			if verify == max_it*0.1: return best_solution
+		if solution > best_solution: best_solution = solution
 	return best_solution
