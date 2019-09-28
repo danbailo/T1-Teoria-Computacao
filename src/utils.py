@@ -10,8 +10,7 @@ import core
 hooks = [
 	('Crescente', core.crescent),
 	('Decrescente', core.decrescent),
-	('Eficiente', core.efficiency),
-	('Exato', core.exact)
+	('Eficiente', core.efficiency)
 ]
 
 def create_imgs_directory():
@@ -25,7 +24,37 @@ def create_results_directory():
 def get_instances(directory):
 	return sorted(os.listdir(os.path.join('..',directory)), key=lambda k:int(k.strip('input.in')))
 
-def get_results(directory):	
+def get_exact_results(directory):	
+	result = {}
+	time_results = {}
+
+	for input_file in get_instances(directory): 
+		result[input_file] = {}
+		time_results[input_file] = {}
+		with open(os.path.join('..',directory,input_file)) as file: 
+			state = 0
+			weight_items = []
+			values_items = []
+			for line in file: 
+				inst = line.split()
+				if state == 0:
+					number_items = int(inst[0])
+					state = 1
+				elif state == 1:
+					item_id = int(inst[0])
+					values_items.append(int(inst[1]))
+					weight_items.append(int(inst[2]))
+					if item_id == number_items: state = 2
+				elif state == 2:
+					weight_max = int(inst[0])
+			start = time()
+			result[input_file]["Exato"] = core.exact(number_items, weight_max,values_items, weight_items)
+			time_results[input_file]["Exato"] = time() - start
+			
+	with open(os.path.join('..','results','result_exact.json'),'w') as file: file.write(json.dumps(result,indent=4))
+	with open(os.path.join('..','results','time_exact.json'),'w') as file: file.write(json.dumps(time_results,indent=4))
+
+def get_greedy_results(directory):	
 	result = {}
 	time_results = {}
 
