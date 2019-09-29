@@ -4,9 +4,6 @@ import json
 from collections import defaultdict
 import core
 
-# max_it = 100
-# window = 2
-
 hooks = [
 	('Crescente', core.crescent),
 	('Decrescente', core.decrescent),
@@ -91,9 +88,6 @@ def get_GRASP_results(directory):
 
 	windows = [2,3,4,5,6,7,8,9]
 	iters = [10,100,1000,10000]
-
-	# windows = [2,3,4,5,6,7,8,9]
-	# iters = [10,100,1000,10000]
 
 	for input_file in get_instances(directory): 
 		result[input_file] = {}
