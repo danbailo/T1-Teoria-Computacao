@@ -429,7 +429,7 @@
 \section*{Resumo}
 \addcontentsline{toc}{section}{Resumo}
 A proposta deste trabalho consistia em desenvolver uma \textit{Heurística Gulosa} e uma \textit{Heurística GRASP}
-para o \textit{Problema da Mochila Boolena} para as instâncias disponibilizadas para teste e 
+para o \textit{Problema da Mochila Boolena} e aplicá-las nas instâncias disponibilizadas para teste e 
 comparar os resultados obtidos para as duas versões.
 
 Porém, a fim realizar uma pesquisa mais concreta para realizar as comparações dos algoritmos,
@@ -437,18 +437,17 @@ foram desenvolvidas três heurísticas gulosas e algumas variações de uma mesm
 o tamanho da sua janela e o número de iterações do mesmo. Após comparar
 os resultados entre si, foi escolhido a melhor heurística gulosa e a melhor variação do GRASP, a partir do GAP
 obtido ao realizar a comparação desses resultados com os resultados exatos para cada instância. Logo, é possível saber
-exatamente a eficiência de cada heurística construída.
+exatamente o desempenho de cada heurística construída.
 
 % Este trabalho está armazenado num repositório do GitHub(\url{https://github.com/danbailo/T1-Teoria-Computacao}) e
 % o mesmo está disponibilizado em um \textit{Jupyter Notebook} e em um script escrito em \textit{Python}.
-\clearpage
 
 \section{Introdução}
 
 O problema da Mochila(knapsack problem) pode ser enunciado da seguinte forma:
 Dados um número $W \geq 0$, um inteiro positivo $n$ e, para cada $i$ em ${1, . . . , n}$, um
 número $v_i \geq 0$ e um número $w_i \geq 0$, encontrar um subconjunto S de ${1, . . . , n}$ que
-maximize $v(S)$ sob a restrição $w(S)\leq m$. Onde, v(S) denota a soma $\sum_{ i \in S} v_i$ e, 
+maximize $v(S)$ sob a restrição $w(S)\leq W$. Onde, v(S) denota a soma $\sum_{ i \in S} v_i$ e, 
 analogamente, $w(S)$ denota a soma $\sum_{ i \in S} w_i$.
 
 Os números $v_i$ e $w_i$ podem ser interpretados como o valor e peso respectivamente
@@ -458,7 +457,7 @@ mochila, ou seja, o peso máximo que a mochila comporta. O objetivo do problema
 capacidade da mochila.
 
 Este problema vem sendo estudado deste o trabalho de \textit{D.G. Dantzig} \cite{pisinger1995algorithms}, devido a
-sua utilização imediata na Indústria e na Gestão Financeira, porém foi mais enunciado por razões teóricas, 
+sua utilização imediata na Indústria, porém foi mais enunciado por razões teóricas, 
 uma vez que este frequentemente ocorre pela relaxação de vários problemas de programação inteira. 
 Toda a família de \textbf{Problemas da Mochila} requer que um subconjunto de itens sejam escolhidos, de tal forma que o
 somatório dos seus valores seja maximizado sem exceder a capacidade da mochila.
@@ -474,17 +473,16 @@ A forma mais geral é o problema da \textit{Mochila com multirestrições (Multi
 o qual é basicamente um problema de \textit{Programação Inteira Geral com Coeficientes Positivos}.
 
 Todos os problemas da Mochila pertencem a família \textbf{NP-Hard}\cite{pisinger1995algorithms}, significando que
-é muito improvável que possamos desenvolver algoritmos polinomiais para este problema. Porém, a 
-despeito do tempo para o pior caso de todos os algoritmos terem tempo exponencial, diversos exemplos 
+é muito improvável que possamos desenvolver algoritmos polinomiais para este problema. Porém, apesar do tempo para o pior caso de todos os algoritmos terem tempo exponencial, diversos exemplos 
 de grandes instâncias podem ser resolvidos de maneira ótima em fração de segundos. 
 Estes resultados surpreendentes vem de várias décadas de pesquisa que tem exposto as propriedades 
 estruturais especiais do Problema da Mochila, que tornam o problema tão relativamente fácil de resolver.
 
-Neste trabalho, foram desenvolvidas três heurísticas gulosas e uma heurística GRASP que resolvem 
-o Problema da Mochila 0/1, que consiste em escolher n itens, tais que o somatório das utilidades é maximizado sem 
-que o somatório dos pesos extrapolem a capacidade da Mochila. No entanto, dada as instâncias para realizar
-os experimentos, foram comparadas os resultados obtidos a partir das heurísticas e comparados com o resultado
-exato para cada instância, a fim de verificar a eficiência de cada heurística programada.
+Neste trabalho, foram desenvolvidas três heurísticas gulosas e algumas variações de uma mesma heurística GRASP que resolvem 
+o Problema da Mochila 0/1, que consiste em escolher n itens, tais que o somatório dos preços(valor) é maximizado sem 
+que o somatório dos pesos extrapolem a capacidade da Mochila. Logo, dada as instâncias para realizar
+os experimentos, foi comparado o resultado obtido para cada instância a partir das heurísticas com o resultado
+ótimo para cada instância, a fim de verificar o quão bom ficou cada heurística programada.
 
 % Neste trabalho todos os algoritmos apresentados resolvem o Problema da Mochila
 % 0/1, que consiste em escolher n itens, tais que o somatório das utilidades é maximizado sem 
@@ -502,7 +500,7 @@ exato para cada instância, a fim de verificar a eficiência de cada heurística
 % onde $x_j$ é uma variável binária igual a $1$ se j deve ser incluído na mochila e $0$ caso
 % contrário.
 
-\subsection{Tramento de Problemas NP-Hard}
+\subsection{Tramento de Problemas NP-Hard} \label{nphard}
 
 Para tratar um problema NP-Hard, devemos sacrificar uma das seguintes características:
 \begin{enumerate}
@@ -519,14 +517,14 @@ Para isto, podemos desenvolver:
 \subsection{Heurísticas}
 
 Algoritmos heurísticos são aqueles que não apresentam garantia de determinação da solução ótima para o 
-problema estudado. Os métodos aproximativos podem se enquadrar nesta categoria, acrescentando-se que, para 
+problema estudado. Os algoritmos aproximados podem se enquadrar nesta categoria, acrescentando-se que, para 
 estes casos, são conhecidas propriedades com garantia do pior caso.  Entretanto, nem todo algoritmo heurístico 
-é aproximativo, ou seja, nem toda heurística tem uma razão de qualidade comprovada matematicamente ou prova 
+é aproximado, ou seja, nem toda heurística tem uma razão de qualidade comprovada matematicamente ou prova 
 formal de convergência, ou seja a heurística é um conjunto de regras e métodos que conduzem à descoberta, à 
 invenção e à resolução de problemas. Por este motivo, em várias referências bibliográficas distingue-se os 
-termos algoritmo aproximativo e heurística:
+termos algoritmo aproximado e heurística:
 \begin{itemize}
-    \item Aproximativo é a denominação do algoritmo que fornece soluções dentro de um limite de qualidade absoluto ou assintótico, assim como um limite assintótico polinomial de complexidade (pior caso) comprovado matematicamente;
+    \item Aproximado é a denominação do algoritmo que fornece soluções dentro de um limite de qualidade absoluto ou assintótico, assim como um limite assintótico polinomial de complexidade (pior caso) comprovado matematicamente;
     \item Heurística e método heurístico são denominações para o algoritmo que fornece soluções sem um limite formal de qualidade, tipicamente avaliado empiricamente em termos de complexidade (média) e qualidade das soluções.
 \end{itemize}
 
@@ -541,24 +539,26 @@ encontrado durante a fase de busca local. A melhor solução geral é mantida co
 % baseada nas três primeiras iniciais de sua sigla em inglês: gulosa (Greedy), aleatória 
 % (Randomized) e adaptativa (Adaptive).
 
-\clearpage
 \section{Avaliação Experimental}
-% Nesta seção serão abordados os métodos que foram utilizados para obter os resultados que serão discutidos posteriormente.
-% Todo o projeto foi escrito em \textit{Python} e está disponível no repositório do GitHub \url{https://www.github.com/danbailo/T1-Teoria-Computacao}.
+Foram disponibilizadas $16$ instâncias para realizar os testes e quantidade de itens dessas instâncias variam
+de 20 até 10000 itens. Todos os algoritmos abordados neste trabalho foram escritos na linguagem de programação \textit{Python}
+e estão disponibilizados no seguinte repositório: \url{https://github.com/danbailo/T1-Teoria-Computacao}.\\
 
 {\bf Considerar o seguinte ambiente para a obtenção dos resultados:}
 \begin{itemize}
     \item Processador: Intel Core™ i5-8250U
     \begin{itemize}
-        \item Número de núcleos 4
-        \item Número de threads 8
-        \item Frequência baseada em processador 1.60 GHz
-        \item Frequência turbo máx. 3.40 GHz
+        \item Número de núcleos 4;
+        \item Número de threads 8;
+        \item Frequência baseada em processador 1.60 GHz;
+        \item Frequência turbo máx. 3.40 GHz.
     \end{itemize}
-    \item Memória: 8GB RAM
+    \item Memória: 8GB RAM.
 \end{itemize}
 
 \subsection{Algoritmo Exato}
+
+O algoritmo utilizado para obter os resultados ótimos foi a versão \textit{Bottom-up} do Problema da Mochila 0/1.
 
 \begin{figure}[!htb]
     \centering
@@ -578,14 +578,16 @@ encontrado durante a fase de busca local. A melhor solução geral é mantida co
 
 Como é possível observar na figura \ref{exact_time}, para algumas instâncias, o algoritmo retornou
 o resultado ótimo instantaneamente, mas em contrapartida, para algumas instâncias o
-tempo para obtenção desse resultado foi muito alto, por exemplo, a instância \textit{"input12.in"},
-demorou mais de \textit{1700 segundos}, ou seja, aproximadamente \textit{28 minutos} somente para essa instância.
+tempo para obtenção do mesmo foi muito alto. Por exemplo, a instância \textit{"input12.in"},
+demorou mais de \textit{1700 segundos}, ou seja, aproximadamente \textit{28 minutos}.
 
-O objeto é tentar alcançar esses resultados ou chegar o mais próximo desses, em um tempo considerável.
+O objetivo então é tentar se aproximar o máximo possível desses resultados ou até mesmo chegar nesses,
+mas em um tempo ideal.
+% alcançar esses resultados ou chegar o mais próximo desses, em um tempo considerável.
 
-\newpage
 \subsection{Heurísticas Gulosas}
-A fim de se aproximar o máximo possível dos resultados exatos, foram programadas três heurísticas gulosas.Essas heurísticas foram desenvolvidas da seguinte forma:
+A fim de melhorar o tempo na aquisição dos resultados, foram programadas três heurísticas gulosas.
+Essas heurísticas foram nomeadas e desenvolvidas da seguinte forma:
 \begin{itemize}
     \item \footnotesize{Crescente: O itens foram ordenados de acordo com seu respectivo peso, de forma crescente;} 
     \item \footnotesize{Decrescente: O itens foram ordenados de acordo com seu respectivo peso, de forma decrescente;}
@@ -594,17 +596,17 @@ A fim de se aproximar o máximo possível dos resultados exatos, foram programad
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.8\linewidth]{../imgs/greedy_compare.pdf}
+    \includegraphics[width=0.7\linewidth]{../imgs/greedy_compare.pdf}
     \caption{Comparação entre resultados das Heurísticas Gulosas.}
     \label{greedy_compare}
 \end{figure}
 
 Como pode-se ver na figura \ref{greedy_compare}, existe uma grande discrepância entre os resultados obtidos 
-de uma versão gulosa para outra. Quanto maior o resultado obtido, melhor é a eficácia da heurística. 
+de uma versão gulosa para outra e nesse caso, quanto maior o resultado obtido, melhor é o desempenho da heurística
+quanto aos resultados ótimos, pois quanto maior esses resultados, mais próximo está da otimalidade.
 
-Supostamente, das três heurísticas comparadas acima,  a \textbf{Eficiente} se mostra a mais próxima
-dos resultados exatos, porém, com o intuito de provar
-essa hipótese, foi realizado o cálculo do \textit{GAP}, pois como
+Supostamente, das três heurísticas comparadas acima, a \textbf{Eficiente} se mostra a melhor, porém, com o intuito de provar
+essa hipótese, foi realizado o cálculo do \textit{GAP} para cada instância e obtido a média desses valores, pois como
 já foi calculado o resultado ótimo para cada instância, realizando este cálculo, é possível saber o quanto
 o resultado desta heurística difere da otimalidade. Portanto, mais próximo de zero o GAP, melhor.
 
@@ -628,7 +630,6 @@ o resultado desta heurística difere da otimalidade. Portanto, mais próximo de 
 
 Logo, está provado que a heurística gulosa Eficiente é a melhor dentre as três apresentadas neste experimento.
 
-\clearpage
 \subsection{GRASP}
 Para a obtenção dos resultados utilizando a metaheurístisca GRASP, a \textit{semente} para a geração
 dos resultados randômicos foi definida com o valor de $42$. Ao definir um valor estático para a semente, 
@@ -672,7 +673,7 @@ isso significa que para alguma janela deste mesmo número de iterações, o resu
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=1\linewidth]{../imgs/gap_all_grasp.pdf}
+    \includegraphics[width=0.7\linewidth]{../imgs/gap_all_grasp.pdf}
     \caption{GAP/Instância.}
     \label{gap_all_grasp}
 \end{figure}
@@ -744,7 +745,7 @@ o GAP médio somente para esta janela, nas duas versões em questão.
 \end{table}
 
 Ainda assim, mesmo para essa janela específica, o GAP da versão de 10000 iterações é pouca coisa menor que o de 1000 iterações.
-Porém, foi realizado uma análise do tempo de execução para essas duas versões do GRASP em questão, para levar
+Entretanto, foi realizado uma análise do tempo de execução para essas duas versões do GRASP em questão, para levar
 em consideração se vale pena sacrificar um centésimo de um resultado mais próximo da otimalidade, para 
 considerar o que demanda menos custo computacional.
 
@@ -757,17 +758,19 @@ considerar o que demanda menos custo computacional.
 
 % Ou seja, pode ser que seja melhor utilizar os resultados obtidos pela versão ate 1000 iterações, para a mesma janela.
 % Pode-se notar na figura \ref{grasp_compare_1kvs10k} que isso se comprova, afinal, são 9000 iterações a menos.
-\newpage
+
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\linewidth]{../imgs/grasp_compare_1kvs10k.pdf}
+    \includegraphics[width=0.7\linewidth]{../imgs/grasp_compare_1kvs10k.pdf}
     \caption{Comparação entre resultados das Heurísticas Gulosas.}
     \label{grasp_compare_1kvs10k}
 \end{figure}
 
-Pode-se observar na figura \ref{grasp_compare_1kvs10k} e na tabela \ref{tab:sum_time_grasp} que a diferença 
-de tempo na obtenção dos resultados é muito grande, para uma diferença tão pequena no GAP médio, ou seja, é possivel
-afirmar também, que depois das 1000 iterações, pouco alterou os resultados obtidos em busca de uma 
+Pode-se observar na figura \ref{grasp_compare_1kvs10k} e na tabela \ref{tab:sum_time_grasp} 
+a diferença para obtenção de cada resultado por instância e o tempo total para cada variação do GRASP, respectivamente.
+É possivel afirmar que a disparidade 
+de tempo na obtenção dos resultados existe e é considerável para uma diferença tão pequena no GAP médio, ou seja, é possivel
+afirmar também que após 1000 iterações pouco alterou os resultados obtidos em busca de uma 
 melhor solução local. 
 
 \begin{table}[htbp]
@@ -775,77 +778,75 @@ melhor solução local.
     \resizebox{0.8\textwidth}{!}{
         \begin{minipage}{\textwidth}
             \centering
-            \begin{tabular}{|c|c|}
+            \begin{tabular}{|c|c|c|}
                     \hline
-                    \textbf{Versões - GRASP} & \textbf{Tempo/s} \\
+                    \textbf{Versões - GRASP} & \textbf{Tempo/s} & \textbf{Speed-up} \\
                     \hline
-                    Máx Iterações - 10000 &  801.770529 \\ \hline
-                    Máx Iterações - 1000  &   79.166350 \\ \hline
-                    Speed-up  &   10.1276 \\ \hline
+                    Máx Iterações - 10000 & 801.770529 & - \\ \hline
+                    Máx Iterações - 1000  &   79.166350 & 10.1276 \\ \hline
+                       
             \end{tabular}  
           \caption{Somatório do tempo para obtenção dos resultados.}
           \label{tab:sum_time_grasp}
         \end{minipage}}
 \end{table}
 
+A tabela \ref{tab:sum_time_grasp} também mostra o \textbf{Speedup} obtido da versão de 10000 iterações para
+a versão de 1000 iterações, e como pode-se ver, a versão de 1000 iterações é 10 vezes mais rápida que a versão
+de 10000 iterações, o que em recurso computacional é muito relevante.
 Portanto, foi definido que a melhor versão do GRASP dentre as testadas, em relação a custo/benefício,
-é a versão de 1000 iterações com o tamanho de janela 7.
+é a versão de 1000 iterações com a janela de tamanho 7.
 
-\clearpage
 
 
 \section{Conclusão}
 
-\begin{figure}[h]
+A figura \ref{final_compare} mostra a comparação final entre a melhor heurística gulosa e a melhor variação do GRASP
+dentre as testadas, com os resultados exatos. A figura \ref{time_final_cmp} apresenta tempo em que cada
+algoritmo obteve tal resultado.
+
+\begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.3\linewidth]{../imgs/heuristics_compare.pdf}
-    \caption{Comparação entre as melhores Heurísticas testadas.}
-    \label{heuristics_compare}
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../imgs/final_compare.pdf}
+        \caption{Comparação entre os resultados finais.}
+        \label{final_compare}
+    \end{minipage}%
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{../imgs/time_final_cmp.pdf}
+        \caption{Comparação de tempo para obtenção dos resultados entre os algoritmos.}
+        \label{time_final_cmp}
+    \end{minipage}
 \end{figure}
 
+A tabela \ref{tab:cmp_greedy_grasp} mostra o tempo total em segundos, Speedup e o GAP para cada heurística programada.
+Como o algoritmo Exato é utilizado como base de comparação, o mesmo não possui Speedup e nem GAP.
 \begin{table}[htbp]
     \centering
-    \resizebox{0.3\textwidth}{!}{
+    \resizebox{0.8\textwidth}{!}{
         \begin{minipage}{\textwidth}
             \centering
-            \begin{tabular}{|c|c|}
+            \begin{tabular}{|c|c|c|c|}
                     \hline
-                    \textbf{Heurísticas} & \textbf{GAP médio} \\
+                    \textbf{Algoritmos} & \textbf{Tempo/s} & \textbf{Speedup} &\textbf{GAP médio} \\
                     \hline
-                    Eficiente &  2.213083 \\ \hline
-                    GRASP     &  0.022221 \\ \hline
+                    Exato     & 2893.456222 & -          & - \\ \hline
+                    GRASP     & 79.166350   & 36.5490    & 0.022221 \\ \hline
+                    Eficiente & 0.029479    & 98153.1334 & 2.213083\\ \hline
             \end{tabular}  
           \caption{GAP entre as melhores Heurísticas testadas.}
-          \label{tab:sum_time_grasp}
+          \label{tab:cmp_greedy_grasp}
         \end{minipage}}
 \end{table}
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.3\linewidth]{../imgs/time_final_cmp.pdf}
-    \caption{Comparação de tempo para obtenção dos resultados entre os algoritmos.}
-    \label{time_final_cmp}
-\end{figure}
+Pode-se concluir que os resultados alcançados foram satisfatórios. As heurísticas não alcançaram a otimalidade
+, bem como visto na página \ref{nphard}, porém, foram bons resultados em relação a tempo/instância. É importante
+notar que, as instâncias disponibilizadas não são tão grandes e mesmo assim, a obtenção do resultado ótimo
+demandou bastante tempo, logo, é inviável utilizar um algoritmo exato para a obtenção de tal resultado num cenário
+onde as instâncias ultrapassam 100000 itens por exemplo.
 
-\begin{table}[h]
-    \centering
-    \resizebox{0.3\textwidth}{!}{
-        \begin{minipage}{\textwidth}
-            \centering
-            \begin{tabular}{|c|c|c|}
-                    \hline
-                    \textbf{Versões - GRASP} & \textbf{Tempo/s} & \textbf{Speedup}\\
-                    \hline
-                    Exato     &  2893.456222 & - \\ \hline
-                    GRASP     &    79.166350 & 36.5490\\ \hline
-                    Eficiente &     0.029479 & 98153.1334\\\hline
-            \end{tabular}  
-          \caption{GAP entre as melhores Heurísticas testadas.}
-          \label{tab:sum_time_grasp}
-        \end{minipage}}
-\end{table}
-
-\clearpage
 \bibliography{References}{}
 \bibliographystyle{plain}
 
