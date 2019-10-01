@@ -602,13 +602,22 @@ Essas heurísticas foram nomeadas e desenvolvidas da seguinte forma:
 \end{figure}
 
 Como pode-se ver na figura \ref{greedy_compare}, existe uma grande discrepância entre os resultados obtidos 
-de uma versão gulosa para outra e nesse caso, quanto maior o resultado obtido, melhor é o desempenho da heurística
-quanto aos resultados ótimos, pois quanto maior esses resultados, mais próximo está da otimalidade.
+de uma versão gulosa para outra e nesse caso, quanto maior o resultado obtido, melhor é a heurística
+quanto a proximidade aos resultados ótimos. Uma forma de garantir o quão boa é a heurística,
+é realizando o cálculo do \textbf{GAP médio}, que é dado como:
 
-Supostamente, das três heurísticas comparadas acima, a \textbf{Eficiente} se mostra a melhor, porém, com o intuito de provar
-essa hipótese, foi realizado o cálculo do \textit{GAP} para cada instância e obtido a média desses valores, pois como
-já foi calculado o resultado ótimo para cada instância, realizando este cálculo, é possível saber o quanto
-o resultado desta heurística difere da otimalidade. Portanto, mais próximo de zero o GAP, melhor.
+\begin{equation} \label{gap_equation}
+    (\sum_{i=1}^{n}((x_i-y_i)/x_i)\cdot100) / n
+\end{equation}
+
+Onde $x_i$ é o resultado exato na \textit{i-ésima} instância e $y_i$ o resultado obtido pela heurística na \textit{i-ésima} instância e $n$ a quantidade de instâncias. Logo,
+quanto mais proximo de zero for o resultado final, melhor. Supondo que alguma heurística alcance um GAP de zero, quer
+dizer que esta obteve os resultados ótimos para estas instâncias.
+
+% Supostamente, das três heurísticas comparadas acima, a \textbf{Eficiente} se mostra a melhor, porém, com o intuito de provar
+% essa hipótese, foi realizado o cálculo do \textit{GAP} para cada instância e obtido a média desses valores, pois como
+% já foi calculado o resultado ótimo para cada instância, realizando este cálculo, é possível saber o quanto
+% o resultado desta heurística difere da otimalidade. Portanto, mais próximo de zero o GAP, melhor.
 
 \begin{table}[htbp]
     \centering
@@ -628,35 +637,43 @@ o resultado desta heurística difere da otimalidade. Portanto, mais próximo de 
         \end{minipage}}
 \end{table}
 
-Logo, está provado que a heurística gulosa Eficiente é a melhor dentre as três apresentadas neste experimento.
+Portanto, a heurística gulosa Eficiente é a melhor dentre as três apresentadas neste experimento.
 
 \subsection{GRASP}
 Para a obtenção dos resultados utilizando a metaheurístisca GRASP, a \textit{semente} para a geração
 dos resultados randômicos foi definida com o valor de $42$. Ao definir um valor estático para a semente, 
 os resultados que serão gerados
-na fase de construção, partirão da mesma cadeia a cada iteração do GRASP. Ou seja, supondo que na primeira
+na fase de construção, partirão do último elemento gerado na mesma cadeia a cada iteração do GRASP. Ou seja, supondo que na primeira
 iteração de uma janela qualquer o numero gerado foi $k$, então, na próxima iteração, após realizar a busca local,
-a cadeia de números geradas randomicamente, partirá desse mesmo número $k$, portanto, é uma forma de evitar
-que a cada iteração para uma mesma janela, o GRASP gere resultados totalmente aleatórios.
+a cadeia de números geradas randomicamente, partirá de $k+1$, portanto, é uma forma de evitar
+que a cada execução para uma mesma janela, o GRASP gere resultados totalmente aleatórios.
 
-Com a intenção de escolher um bom valor para janela com o objetivo de obter de bons resultados locais,
-foi realizado um experimento selecionando oito valores distintos para o tamanho da janela na escolha
-de valores randômicos na fase de construção, esses valores estão no intervalo de $[2,9]$; foi escolhido assim,
-pois se o tamanho da janela fosse $1$, este seria equivalente a uma heurística gulosa já visto acima, nomeada de 
-\textbf{Eficiente} e caso o valor $10$ estivesse presente, iria acontecer um caso no número máximo de iterações
-onde este seria equivalente ao \textbf{Algoritmo Aleatório}.
+Com a intenção de escolher um bom valor para o tamanho da janela e assim obter bons resultados locais,
+foi realizado um experimento selecionando oito valores distintos para o tamanho da janela, onde 
+este tem total influência no algoritmo na fase de construção, ou seja, cada janela se remete a um "novo" algoritmo.
+Esses valores estão no intervalo de $[2,9]$, logo, serão 8 variações diferentes somente considerando o tamanho da janela.
+
+% e
+% foi escolhido assim pois se o $1$ e $10$ estivesse incluso neste intervalo, 
+% iria acontecer um
+
+% esta variação seria equivalente a uma heurística gulosa já visto acima, nomeada de 
+% \textbf{Eficiente} ou iria acontecer um caso no número máximo de iterações
+% onde este seria equivalente ao \textbf{Algoritmo Aleatório}, respectivamente.
 
 Além disso, também foi foram escolhidos quatro números diferentes
 como critério de parada nas iterações do GRASP, isto é, o número máximo de iterações, os valores são
-$10,100,1000$ e $10000$, ou seja, para cada valor distinto, o algoritmo só irá parar ao realizar este número de iterações.
+$10,100,1000$ e $10000$, ou seja, para cada valor distinto, o algoritmo só irá parar ao realizar este número de iterações e
+para estes, cada número máximo de iterações, é também uma variação diferente do GRASP.
+Logo, é possivel afirmar que serão analisadas 24 versões a partir de um mesmo algoritmo GRASP.
 
-Assim como afirmado acima na página \pageref{tab:gap_greedy}, quanto maior o resultado retornado por cada 
-"variação" de uma heurística, melhor. Isto porque quanto maior for esse resultado, mais próximo ou igual 
-está esse valor do resultado ótimo para cada instância.
+% Assim como afirmado acima na página \pageref{tab:gap_greedy}, quanto maior o resultado retornado por cada 
+% "variação" de uma heurística, melhor. Isto porque quanto maior for esse resultado, mais próximo ou igual 
+% está esse valor do resultado ótimo para cada instância.
 
-Na figura \ref{all_grasp}, é possivel notar um comportamento interessante quanto aos resultados obtidos, isto porque,
-para cada número máximo de iterações, os resultados se diferem um do outro quanto ao tamanho da janela, quando
-o número de iterações é menor, ou seja, $10$ e $100$, para os outros valores, independente do tamanho da janela,
+Na figura \ref{all_grasp}, é possivel notar um comportamento interessante quanto aos resultados obtidos, isto porque
+para cada número máximo de iterações, os resultados se diferem um do outro quanto ao tamanho da janela quando
+o número de iterações é menor, ou seja, $10$ e $100$. Para os valores $100$ e $1000$, independente do tamanho da janela,
 os resultados obtidos são praticamente os mesmos, por isso se observa um comportamento "constante".
 
 \begin{figure}[h]
@@ -667,8 +684,8 @@ os resultados obtidos são praticamente os mesmos, por isso se observa um compor
 \end{figure}
 
 A fim de escolher o melhor número de iterações para posteriormente analisar o melhor tamanho da janela
-para estes experimentos, a figura \ref{gap_all_grasp} mostra o cálculo do GAP/Instância, considerando que para cada instância, existe varios 
-tamanhos de uma janela, por isso é possivel notar alguns "picos" sobre o eixo num intervalo de uma mesma instância;
+para estes experimentos, a figura \ref{gap_all_grasp} mostra o cálculo do GAP/Instância, considerando que para cada instância, existem vários 
+tamanhos de janela, por isso é possivel notar alguns "picos" sobre o eixo num intervalo de uma mesma instância;
 isso significa que para alguma janela deste mesmo número de iterações, o resultado divergiu mais da otimalidade.
 
 \begin{figure}[h]
@@ -679,7 +696,7 @@ isso significa que para alguma janela deste mesmo número de iterações, o resu
 \end{figure}
 
 Supostamente, o número de iterações que mostra ser o melhor dentre os testados, é o de $10000$ iterações, a
-tabela \ref{tab:gap_grasp}, apresenta o GAP médio para dos resultados para todas as janelas/iteração.
+tabela \ref{tab:gap_grasp}, apresenta o GAP médio para dos resultados para todas as janelas/número de iteração.
 
 \begin{table}[htbp]
     \centering
@@ -702,27 +719,28 @@ tabela \ref{tab:gap_grasp}, apresenta o GAP médio para dos resultados para toda
 
 Portanto, pode-se afirmar que, de fato, para um número de iterações mais reduzido, o GAP é maior, pois
 dependendo do tamanho da janela os resultados gerados podem se divergir muito e a tendência para um número
-maior de iterações é que os vizinhos e resultados gerados, sejam cada vez mais próximos e melhores,
-respectivamente.
+maior de iterações é que os vizinhos e resultados gerados, sejam cada vez mais próximos e melhores.
 
 A partir disso, foi selecionado somente os resultados gerados a partir de $10000$ iterações
-e então foi desenvolvido uma lógica para escolher o melhor da janela dentre o intervalo $[2,9]$.
+e então foi desenvolvido uma lógica para escolher o melhor tamanho de janela dentre o intervalo $[2,9]$.
 
-A lógica funciona da seguinte forma, para cada instância foi armazenado o índice das janelas que obteram
+A lógica funciona da seguinte forma, para cada instância foi armazenado o índice das janelas que obtiveram
 o maior valor dentre todas as janelas daquela instância. Por exemplo, para a instância \textit{"input1.in"},
-todos as janelas obteram como resultado o mesmo valor, ou seja, o valor máximo era comum para todas as janelas
+todos as janelas obtiveram como resultado o mesmo valor, ou seja, o valor máximo era comum para todas as janelas
 nessa instância, então foi armazenado o índice de todas as janelas na \textit{"input1.in"}.
 
 Este procedimento foi realizado para todas as instâncias e ao final deste, o índice da janela que teve 
 mais ocorrências de valores máximos foi escolhida como o melhor tamanho de janela para prosseguir com os testes. Se
-ao final do procedimento, houver mais de um índice em comum para todas as instâncias, a de menor índice é selecionada.
+ao final deste procedimento, houver mais de uma janela com a mesma quantidade de ocorrências de valor máximo,
+a janela de menor índice é selecionada.
 Portanto, foi definido que o melhor tamanho de janela para essa quantidade de iterações foi a \textbf{Janela de tamanho 7.}
 
 Então, a seguinte questão foi levantada: \textbf{"Será mesmo necessário realizar 10000 iterações para obter bons resultados?"}
 
-Isto porque, esse número de iterações foi escolhido por causa do seu GAP médio, porém foi realizado o 
+Isto se deu pelo fato de 10000 iterações ser uma alta quantidade de repetições e este foi escolhido
+pelo fato de seu GAP médio ser o menor dentre os outros testados, porém foi realizado o 
 mesmo processo para escolher a melhor janela para os resultados que foram obtidos a partir de 1000 iterações,
-que também obteve um bom GAP médio, mas ainda assim era inferior ao de 10000 iterações.
+já que o GAP médio deste era pouco maior do que o de 10000 iterações.
 
 Surpreendentemente, a janela que obteve os melhores resultados tambem foi a janela 7, nesse caso, foi calculado
 o GAP médio somente para esta janela, nas duas versões em questão.
@@ -732,12 +750,12 @@ o GAP médio somente para esta janela, nas duas versões em questão.
     \resizebox{0.8\textwidth}{!}{
         \begin{minipage}{\textwidth}
             \centering
-          \begin{tabular}{|c|c|}
+          \begin{tabular}{|l|c|}
                     \hline
                     \textbf{Versões - GRASP} & \textbf{GAP médio} \\
                     \hline
-                    GRASP 1000 it.  &  0.022221 \\ \hline
-                    GRASP 10000 it. &  0.021815 \\ \hline
+                    GRASP 1000 it. - janela 7  &  0.022221 \\ \hline
+                    GRASP 10000 it. - janela 7 &  0.021815 \\ \hline
             \end{tabular}  
           \caption{GAP médio - GRASP}
           \label{tab:gap_grasp}
@@ -745,9 +763,9 @@ o GAP médio somente para esta janela, nas duas versões em questão.
 \end{table}
 
 Ainda assim, mesmo para essa janela específica, o GAP da versão de 10000 iterações é pouca coisa menor que o de 1000 iterações.
-Entretanto, foi realizado uma análise do tempo de execução para essas duas versões do GRASP em questão, para levar
-em consideração se vale pena sacrificar um centésimo de um resultado mais próximo da otimalidade, para 
-considerar o que demanda menos custo computacional.
+Entretanto, foi realizado uma análise do tempo de execução para essas duas versões do GRASP, para levar
+em consideração se vale pena sacrificar um milésimo de um resultado mais próximo da otimalidade, para 
+selecionar o que demanda menos custo computacional.
 
 % Ou seja, e possivel ver que o gap para 10000 iteracoes é menor do que para 1000 iteracoes, logo, poderia afirmar
 % que este é o melhor a ser usado dentro todos os valores testados?
@@ -767,10 +785,10 @@ considerar o que demanda menos custo computacional.
 \end{figure}
 
 Pode-se observar na figura \ref{grasp_compare_1kvs10k} e na tabela \ref{tab:sum_time_grasp} 
-a diferença para obtenção de cada resultado por instância e o tempo total para cada variação do GRASP, respectivamente.
+a diferença de tempo para obtenção de cada resultado por instância e o tempo total para cada variação do GRASP, respectivamente.
 É possivel afirmar que a disparidade 
-de tempo na obtenção dos resultados existe e é considerável para uma diferença tão pequena no GAP médio, ou seja, é possivel
-afirmar também que após 1000 iterações pouco alterou os resultados obtidos em busca de uma 
+de tempo na obtenção dos resultados existe e é considerável para uma diferença tão pequena no GAP médio, ou seja, é aceitável
+afirmar também que após 1000 iterações pouco alterou-se os resultados obtidos em busca de uma 
 melhor solução local. 
 
 \begin{table}[htbp]
@@ -842,8 +860,9 @@ Como o algoritmo Exato é utilizado como base de comparação, o mesmo não poss
 \end{table}
 
 Pode-se concluir que os resultados alcançados foram satisfatórios. As heurísticas não alcançaram a otimalidade
-, bem como visto na página \ref{nphard}, porém, foram bons resultados em relação a tempo/instância. É importante
-notar que, as instâncias disponibilizadas não são tão grandes e mesmo assim, a obtenção do resultado ótimo
+, bem como visto na subseção \ref{nphard}, porém, foram bons resultados visto que o GAP é bem próximo de zero
+e o tempo de obtenção dos mesmos é mais reduzido. É importante
+notar que, as instâncias disponibilizadas não são tão grandes e mesmo assim, a atingir os resultados ótimos
 demandou bastante tempo, logo, é inviável utilizar um algoritmo exato para a obtenção de tal resultado num cenário
 onde as instâncias ultrapassam 100000 itens por exemplo.
 
