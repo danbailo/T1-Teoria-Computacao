@@ -4,6 +4,10 @@
 \usepackage{graphicx}
 \usepackage{graphics}
 
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{listings}
+
 \usepackage{tabularx}
 \usepackage{graphicx}
 \usepackage{adjustbox}
@@ -465,10 +469,10 @@ Diferentes tipos de problemas da Mochila ocorrem dependendo da distribuição de
 itens e Mochilas como citado em \cite{pisinger1995algorithms}:
 
 No problema da \textit{Mochila 0/1(0/1 Knapsack Problem)}, cada item pode ser escolhido no máximo uma vez, 
-enquanto que no problema da \textit{Mochila Limitado(Bounded Knapsack Problem)} temos uma quantidade limitada 
+enquanto que no problema da \textit{Mochila Limitado(Bounded Knapsack Problem)} existe uma quantidade limitada 
 para cada tipo de item. O problema da \textit{Mochila com Múltipla Escolha(Multiple-choice Knapsack Problem)}
 ocorre quando os itens devem ser escolhidos de classes disjuntas, e se várias Mochilas são preenchidas 
-simultaneamente temos o problema da \textit{Mochila Múltiplo(Multiple Knapsack Problem)}. 
+simultaneamente este é o problema da \textit{Mochila Múltiplo(Multiple Knapsack Problem)}. 
 A forma mais geral é o problema da \textit{Mochila com multirestrições (Multi-constrained Knapsack Problem)} 
 o qual é basicamente um problema de \textit{Programação Inteira Geral com Coeficientes Positivos}.
 
@@ -502,12 +506,12 @@ os experimentos, foi comparado o resultado obtido para cada instância a partir 
 
 \subsection{Tramento de Problemas NP-Hard} \label{nphard}
 
-Para tratar um problema NP-Hard, devemos sacrificar uma das seguintes características:
+Para tratar um problema NP-Hard, deve-se sacrificar uma das seguintes características:
 \begin{enumerate}
     \item Resolver o problema na otimalidade.
     \item Resolver o problema em tempo polinomial.
 \end{enumerate}
-Para isto, podemos desenvolver:
+Para isto, pode-se desenvolver:
 \begin{itemize}
     \item Algoritmos Aproximados, nos quais estes sacrificam 1.
     \item Algoritmos Exatos, nos quais estes sacrificam 2.
@@ -722,9 +726,25 @@ dependendo do tamanho da janela os resultados gerados podem se divergir muito e 
 maior de iterações é que os vizinhos e resultados gerados, sejam cada vez mais próximos e melhores.
 
 A partir disso, foi selecionado somente os resultados gerados a partir de $10000$ iterações
-e então foi desenvolvido uma lógica para escolher o melhor tamanho de janela dentre o intervalo $[2,9]$.
+e então foi desenvolvido um procedimento para escolher o melhor tamanho de janela dentre o intervalo $[2,9]$.
 
-A lógica funciona da seguinte forma, para cada instância foi armazenado o índice das janelas que obtiveram
+\begin{algorithm}
+    \begin{algorithmic}[1]
+      \Function{find\_occurrences}{grasp}
+        \State all\_windows\_ocurr = []
+        \State for inst in instancias:  
+        \State { }{ }{ }{ }ocurr = np.where(grasp.loc[inst].values == grasp.loc[inst].values.max())
+        \State { }{ }{ }{ }all\_windows\_ocurr += list(ocurr)
+        \State best\_window = 0
+        \State for i in range(len(janelas)):
+        \State { }{ }{ }{ }if all\_windows\_ocurr.count(i) > best\_window:
+        \State { }{ }{ }{ }{ }{ }{ }{ }best\_window = all\_windows\_ocurr.count(i)
+        \State return best\_window
+      \EndFunction
+    \end{algorithmic}
+  \end{algorithm}
+
+O procedimento funciona da seguinte forma, para cada instância foi armazenado o índice das janelas que obtiveram
 o maior valor dentre todas as janelas daquela instância. Por exemplo, para a instância \textit{"input1.in"},
 todos as janelas obtiveram como resultado o mesmo valor, ou seja, o valor máximo era comum para todas as janelas
 nessa instância, então foi armazenado o índice de todas as janelas na \textit{"input1.in"}.
